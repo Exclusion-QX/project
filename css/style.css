@@ -26,3 +26,10 @@ body,
 .page-footer{
 	background-color: #929FBA;
 }
+
+.form-signin {
+	max-width: 400px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
