@@ -31,5 +31,18 @@ body,
 	max-width: 400px;
 	padding: 15px;
 	margin: 0 auto;
+	padding-top: 60px;
+	padding-bottom: 120px;
 }
 
+.form-signin input {
+	padding-bottom: 10px;
+}
+
+.form-signin a {
+	margin: 0;
+}
+
+header {
+	height: 10vh;
+}
