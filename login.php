@@ -46,10 +46,10 @@ require ("header.html");
 
 			if ($count == 1) {
 				$_SESSION['purchaser_login'] = $login;
-			}else {
-				$fmsg = "Ошибка";
+			} else { ?> 
+				 <div class="alert alert-danger" role="alert" style="text-align: center;"> <?php echo "Ошибка"; ?> </div><?php }
 			}
-		}
+		
 
 		if (isset($_SESSION['purchaser_login'])) {
 			$login = $_SESSION['purchaser_login'];
