@@ -116,7 +116,7 @@ require("header.html");
  	<!-- MENU  -->
  		<div class="container">
  			<nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
- 				<span class="navbar-brand">Categories:</span>
+ 				<span class="navbar-brand">Меню</span>
 
  				<button class="navbar-toggler" type="button"
 					data-toggle="collapse" data-target="#nextNav"
@@ -149,6 +149,7 @@ require("header.html");
 							<input type="text" class="form-control mr-sm-2" placeholder="Search" aria-label="Search">
 						</div>
 					</form>
+
 				</div>
  			</nav>
 
@@ -159,13 +160,13 @@ require("header.html");
 
  							<div class="view overlay">
  								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
- 								<a href="">
+ 								<a href="shop-page.php">
  									<div class="mask rgba-white-slight"></div>
  								</a>
  							</div>
 
 							<div class="card-body text-center">
-								<a href="" class="grey-text">
+								<a href="shop-page.php" class="grey-text">
 									<h5>Процессоры</h5>
 								</a>
 
