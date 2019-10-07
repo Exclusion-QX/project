@@ -33,15 +33,15 @@ require("header.html");
  							</h1>
 
  							<p>
- 								<strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, cumque.</strong>
+ 								<strong>Создайте свой компьютер</strong>
  							</p>
 
  							<p class="mb-4 d-none d-md-block">
- 								<strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores libero sapiente at explicabo, dolorem placeat!</strong>
+ 								<strong>Большой выбор комплектующих и готовые сборки компьютеров</strong>
  							</p>
 
  							<a href="#" class="btn btn-outline-white btn-lg">
- 								Lorem ipsum dolor. <i class="fa fa-graduation-cap ml-2"></i>
+ 								Перейти к каталогу<i class="fa fa-graduation-cap ml-2"></i>
  							</a>
  						</div>
  					</div>
@@ -56,19 +56,19 @@ require("header.html");
  					<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
  						<div class="text-center white-text mx-5 wow fadeIn">
  							<h1 class="mb-4">
- 								<strong>Интернет магазин</strong>
+ 								<strong>Интернет-магазин</strong>
  							</h1>
 
  							<p>
- 								<strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, cumque.</strong>
+ 								<strong>Создайте свой компьютер</strong>
  							</p>
 
  							<p class="mb-4 d-none d-md-block">
- 								<strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores libero sapiente at explicabo, dolorem placeat!</strong>
+ 								<strong>Большой выбор комплектующих и готовые сборки компьютеров</strong>
  							</p>
 
  							<a href="#" class="btn btn-outline-white btn-lg">
- 								Lorem ipsum dolor. <i class="fa fa-graduation-cap ml-2"></i>
+ 								Перейти к каталогу<i class="fa fa-graduation-cap ml-2"></i>
  							</a>
  						</div>
  					</div>
@@ -83,19 +83,19 @@ require("header.html");
  					<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
  						<div class="text-center white-text mx-5 wow fadeIn">
  							<h1 class="mb-4">
- 								<strong>Интернет магазин</strong>
+ 								<strong>Интернет-магазин</strong>
  							</h1>
 
  							<p>
- 								<strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, cumque.</strong>
+ 								<strong>Создайте свой компьютер</strong>
  							</p>
 
  							<p class="mb-4 d-none d-md-block">
- 								<strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores libero sapiente at explicabo, dolorem placeat!</strong>
+ 								<strong>Большой выбор комплектующих и готовые сборки компьютеров</strong>
  							</p>
 
  							<a href="#" class="btn btn-outline-white btn-lg">
- 								Lorem ipsum dolor. <i class="fa fa-graduation-cap ml-2"></i>
+ 								Перейти к каталогу<i class="fa fa-graduation-cap ml-2"></i>
  							</a>
  						</div>
  					</div>
