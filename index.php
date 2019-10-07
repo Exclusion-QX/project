@@ -5,101 +5,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Material Design Bootstrap</title>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-  <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="css/mdb.min.css" rel="stylesheet">
-  <!-- Your custom styles (optional) -->
-  <link href="css/style.css" rel="stylesheet">
-  <style>
-  	html,
-	body,
-	header,
-	.carousel
-	{
-		height: 60vh;
-	}
-	@media (max-width: 740px){
-		html,
-		body,
-		header,
-		.carousel
-		{
-			height: 100vh;
-		}
-	@media (min-width: 800px) and (max-width: 850px) {
-		html,
-		body,
-		header,
-		.carousel
-		{
-			height: 100vh;
-		}
-	}
-}	
+  <title>Главная</title>
 
-  </style>
-</head>
+<?php
 
-<body>
+require("header.html");
+?>
 
-	<!-- Шапка сайта -->
-	<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
-		<div class="container">
-		<!-- Логотип -->
-			<a href="#" class="navbar-brand waves-effect">
-				<strong class="blue-text">Project</strong>
-			</a>
-
-		<!-- Кнопка меню, при уменьшении экрана -->
-			<button class="navbar-toggler" type="button"
-			data-toggle="collapse" data-target="#navbarContent"
-			aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-				
-			</button>
-			<div class="collapse navbar-collapse" id="navbarContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a href="#" class="nav-link waves-effect">Главная</a>
-					</li>
-					<li class="nav-item">
-						<a href="#" class="nav-link waves-effect">Товары</a>
-					</li>
-					<li class="nav-item">
-						<a href="#" class="nav-link waves-effect">Конструктор</a>
-					</li>
-					<li class="nav-item">
-						<a href="#" class="nav-link waves-effect">О нас</a>
-					</li>
-				</ul>
-				<!-- Количество продуктов в карзине -->
-				<ul class="navbar-nav nav-flex-icons">
-					<li class="nav-item">
-						<a href="#" class="nav-link waves-effect">
-							<span class="badge red z-depth-1 mr-1">12</span>
-							<i class="fa fa-shopping-cart"></i>
-							<span class="clearfix d-none d-sm-inline-block">Корзина</span>
-						</a>
-					</li>
-				</ul>
-
-				<!-- Кнопки регистрации-->
-
-				<ul class="navbar-nav mr-0">
-					<li class="nav-item">
-						<a href="" class="nav-link waves-effect">Авторизация</a>
-					</li>
-					<li class="nav-item">
-						<a href="registration.php" class="nav-link waves-effect">Регистрация</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+ 	
  	<!-- КАРУСЕЛь -->
  	<div id="carousel-ex" class="carousel slide carousel-fade pt-4" data-ride="carousel">
  		<ol class="carousel-indicators">
@@ -120,15 +33,15 @@
  							</h1>
 
  							<p>
- 								<strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, cumque.</strong>
+ 								<strong>Создайте свой компьютер</strong>
  							</p>
 
  							<p class="mb-4 d-none d-md-block">
- 								<strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores libero sapiente at explicabo, dolorem placeat!</strong>
+ 								<strong>Большой выбор комплектующих и готовые сборки компьютеров</strong>
  							</p>
 
  							<a href="#" class="btn btn-outline-white btn-lg">
- 								Lorem ipsum dolor. <i class="fa fa-graduation-cap ml-2"></i>
+ 								Перейти к каталогу<i class="fa fa-graduation-cap ml-2"></i>
  							</a>
  						</div>
  					</div>
@@ -143,19 +56,19 @@
  					<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
  						<div class="text-center white-text mx-5 wow fadeIn">
  							<h1 class="mb-4">
- 								<strong>Интернет магазин</strong>
+ 								<strong>Интернет-магазин</strong>
  							</h1>
 
  							<p>
- 								<strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, cumque.</strong>
+ 								<strong>Создайте свой компьютер</strong>
  							</p>
 
  							<p class="mb-4 d-none d-md-block">
- 								<strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores libero sapiente at explicabo, dolorem placeat!</strong>
+ 								<strong>Большой выбор комплектующих и готовые сборки компьютеров</strong>
  							</p>
 
  							<a href="#" class="btn btn-outline-white btn-lg">
- 								Lorem ipsum dolor. <i class="fa fa-graduation-cap ml-2"></i>
+ 								Перейти к каталогу<i class="fa fa-graduation-cap ml-2"></i>
  							</a>
  						</div>
  					</div>
@@ -170,19 +83,19 @@
  					<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
  						<div class="text-center white-text mx-5 wow fadeIn">
  							<h1 class="mb-4">
- 								<strong>Интернет магазин</strong>
+ 								<strong>Интернет-магазин</strong>
  							</h1>
 
  							<p>
- 								<strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, cumque.</strong>
+ 								<strong>Создайте свой компьютер</strong>
  							</p>
 
  							<p class="mb-4 d-none d-md-block">
- 								<strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores libero sapiente at explicabo, dolorem placeat!</strong>
+ 								<strong>Большой выбор комплектующих и готовые сборки компьютеров</strong>
  							</p>
 
  							<a href="#" class="btn btn-outline-white btn-lg">
- 								Lorem ipsum dolor. <i class="fa fa-graduation-cap ml-2"></i>
+ 								Перейти к каталогу<i class="fa fa-graduation-cap ml-2"></i>
  							</a>
  						</div>
  					</div>
@@ -200,10 +113,10 @@
 
  	<main>
 
- 	<!-- MENU -->
+ 	<!-- MENU  -->
  		<div class="container">
  			<nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
- 				<span class="navbar-brand">Categories:</span>
+ 				<span class="navbar-brand">Меню</span>
 
  				<button class="navbar-toggler" type="button"
 					data-toggle="collapse" data-target="#nextNav"
@@ -236,6 +149,7 @@
 							<input type="text" class="form-control mr-sm-2" placeholder="Search" aria-label="Search">
 						</div>
 					</form>
+
 				</div>
  			</nav>
 
@@ -246,13 +160,13 @@
 
  							<div class="view overlay">
  								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
- 								<a href="">
+ 								<a href="shop-page.php">
  									<div class="mask rgba-white-slight"></div>
  								</a>
  							</div>
 
 							<div class="card-body text-center">
-								<a href="" class="grey-text">
+								<a href="shop-page.php" class="grey-text">
 									<h5>Процессоры</h5>
 								</a>
 
@@ -530,47 +444,7 @@
  		</div>
  	</main>
 
-
-	<footer class="page-footer text-center font-small mt-4 wow fadeIn">
-		<div class="pt-4">
-			<a href="#" role="button" class="btn btn-outline-white">Shop <i class="fa fa-graduation-cap ml-2"></i></a>
-
-			<a href="#" role="button" class="btn btn-outline-white">Internet <i class="fa fa-graduation-cap ml-2"></i></a>
-		</div>
-
-		<hr class="my-4">
-
-		<div class="pb-4">
-			<a href="#">
-				<i class="fab fa-facebook-f mr-3"></i>
-			</a>
-			<a href="#">
-				<i class="fab fa-twitter mr-3"></i>
-			</a>
-			<a href="#">
-				<i class="fab fa-youtube mr-3"></i>
-			</a>
-			<a href="#">
-				<i class="fab fa-google-plus mr-3"></i>
-			</a>
-			<a href="#">
-				<i class="fab fa-dribbble mr-3"></i>
-			</a>
-			<a href="#">
-				<i class="fab fa-pinterest mr-3"></i>
-			</a>
-			<a href="#">
-				<i class="fab fa-github mr-3"></i>
-			</a>
-		</div>
-
-		<div class="footer-copyright py-3">
-			Net shop
-		</div>
-	</footer>
-
-  <!-- SCRIPTS -->
-  <!-- JQuery -->
+ 
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="js/popper.min.js"></script>
@@ -580,4 +454,7 @@
   <script type="text/javascript" src="js/mdb.min.js"></script>
 </body>
 
-</html>
+<?php
+require ("footer.html");
+?>
+
