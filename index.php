@@ -434,6 +434,7 @@ require("header.html");
  				</ul>
  			</nav>
  		</div>
+ 		<div class="mini-cart"></div>
  	</main>
 
  
