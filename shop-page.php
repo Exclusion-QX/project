@@ -15,13 +15,13 @@ require("header.html");
  					<div class="p-4">
  						<div class="mb-3">
  							<a href="">
- 								<span class="badge purple mr-1">Category 2</span>
+ 								<span class="badge purple mr-1">Категория 2</span>
  							</a>
  							<a href="">
- 								<span class="badge blue mr-1">New</span>
+ 								<span class="badge blue mr-1">Новинка</span>
  							</a>
  							<a href="">
- 								<span class="badge red mr-1">Bestseller</span>
+ 								<span class="badge red mr-1">Лидер продаж</span>
  							</a>
  						</div>
 
@@ -34,13 +34,13 @@ require("header.html");
  							</span>
  						</p>
 
- 						<p class="lead font-weight-bold">Desciption</p>
- 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui blanditiis minus quae ipsa eveniet non fugit, molestias, obcaecati minima, tempora, doloremque sit repellat asperiores </p>
+ 						<p class="lead font-weight-bold">Описание</p>
+ 						<p>4 ядра 8 потоков, частота 2.4Ггц, Кэш 1 уровня, кэш 2 уровня, клэш рояль </p>
 
  						<form action="" class="d-flex justify-content-left">
  							<input type="number" value="1" aria-label="Search" style="width: 100px;" class="form-control">
  							<button type="submit" class="btn btn-primary btn-md my-0 p">
- 								Add to card <i class="fa fa-shopping-cart ml-1"></i>
+ 								Добавить в корзину <i class="fa fa-shopping-cart ml-1"></i>
  							</button>
  						</form>
  					</div>

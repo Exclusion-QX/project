@@ -20,7 +20,7 @@ require("header.html");
  					<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
  						<div class="text-center white-text mx-5 wow fadeIn">
  							<h1 class="mb-4">
- 								<strong>E-shop</strong>
+ 								<strong>Интернет-магазин</strong>
  							</h1>
 
  							<p>
@@ -433,6 +433,7 @@ require("header.html");
  				</ul>
  			</nav>
  		</div>
+ 		<div class="mini-cart"></div>
  	</main>
 
  
