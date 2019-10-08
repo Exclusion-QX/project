@@ -3,7 +3,7 @@ var cart = {}; // корзина
 <?php
 		require('connect.php');
 
-			$query = "GET FROM product (id_product) VALUES ('$id_product') ";
+			$query = "SELECT id_product FROM product ";
 			$result = mysqli_query($connection, $query);
     $('.goods-out').html(out);
     $('.add-to-cart').on('click', addToCart); 
