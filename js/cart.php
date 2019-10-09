@@ -1,13 +1,17 @@
 var cart = {}; // корзина
-   
+
+<?php
+		require('connect.php');
+
+			$query = "SELECT id_product FROM product ";
+			$result = mysqli_query($connection, $query);
     $('.goods-out').html(out);
     $('.add-to-cart').on('click', addToCart); 
-    
+    echo result
+?>
 
 
 function addToCart() {
-    
- 
     //добавляем товар в корзину
     var id = $(this).attr('data-id');
     // console.log(id);

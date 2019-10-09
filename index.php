@@ -2,6 +2,7 @@
 <?php
 
 require("header.html");
+require ("functions.php");
 ?>
 
  	
