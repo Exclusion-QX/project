@@ -1,14 +1,16 @@
 <?php
 
 	function get_idproduct($link) {
+
 		global $link;
 		$sql = "SELECT id_product FROM product";
+
+		$sql = "SELECT product_desc FROM product WHERE id_product ='123'";
+
 		$result = mysqli_query($link, $sql);
+		$idproduct = mysqli_fetch_all($result);
 
-		echo '<pre>';
-		var_dump($result);
-		echo '</pre>';
-
+		return $idproduct;
 	}
 
 /*$idproduct = get_idproduct($link);*/
