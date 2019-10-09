@@ -13,7 +13,7 @@ require("header.html");
  				</div>
  				<div class="col-md-5 mb-14">
  					<div class="p-4">
- 						<div class="mb-3">
+ 						<!-- <div class="mb-3">
  							<a href="">
  								<span class="badge purple mr-1">Категория 2</span>
  							</a>
@@ -23,7 +23,7 @@ require("header.html");
  							<a href="">
  								<span class="badge red mr-1">Лидер продаж</span>
  							</a>
- 						</div>
+ 						</div> -->
 
  						<p class="lead">
  							<span class="mr-1">
