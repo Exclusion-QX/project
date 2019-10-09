@@ -8,20 +8,25 @@ require ("header.html");
 		<?php
 		require('connect.php');
 
-		if (isset($_POST['username']) && isset($_POST['password'] ) && isset($_POST['login'] )) {
+		if (isset($_POST['username']) && isset($_POST['password'] ) && isset($_POST['login'] ) ) {
 			$username = $_POST['username'];
 			$email = $_POST['email'];
 			$password = $_POST['password'];
+			$repassword = $_POST['repassword'];
 			$login = $_POST['login'];
 
 			$query = "INSERT INTO purchaser (purchaser_login, purchaser_name , purchaser_pass, purchaser_email, purchaser_cab) VALUES ('$login', '$username', '$password', '$email' , '1') ";
-			$result = mysqli_query($link, $query);
-
-			if ($result) {
+			if ($password == $repassword) {
+				$result = mysqli_query($link, $query);
+				if ($result) {
 				$smsg = "Регистрация прошла успешно";
+				} else {
+					$fsmsg = "Ошибка";
+				}
 			} else {
-				$fsmsg = "Ошибка";
+				$fsmsg = "Пароли не совпадают!";
 			}
+
 		}
 		?>
 
@@ -36,6 +41,7 @@ require ("header.html");
 				<input type="login" name="login" class="form-control" placeholder="Логин" required><br>
 				<input type="email" name="email" class="form-control" placeholder="Email" required><br>
 				<input type="password" name="password" class="form-control" placeholder="Пароль" required><br>
+				<input type="password" name="repassword" class="form-control" placeholder="Повторите пароль" required><br>
 				<button class="btn btn-lg btn-primary btn-block" type="submit" style="margin: 0">Регистрация</button>
 				<a href="login.php" class="btn btn-lg btn-primary btn-block" >Войти</a>
 			</form>
