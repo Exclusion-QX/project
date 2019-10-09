@@ -1,8 +1,10 @@
  
 <?php
+require("header.html");
 require("connect.php");
 require("functions.php");
 ?>
+
 
  
  	<main class="mt-5 pt-4">
@@ -34,9 +36,8 @@ require("functions.php");
  								100$
  							</span>
  						</p>
-
  						<p class="lead font-weight-bold">Описание</p>
- 						<p>4 ядра 8 потоков, частота 2.4Ггц, Кэш 1 уровня, кэш 2 уровня, клэш рояль </p>
+ 						<p><?php print_r($idproduct); ?> </p>
 
  						<form action="" class="d-flex justify-content-left">
  							<input type="number" value="1" aria-label="Search" style="width: 100px;" class="form-control">
