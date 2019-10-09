@@ -1,7 +1,7 @@
  
 <?php
-
-require ("functions.php");
+require("connect.php");
+require("functions.php");
 ?>
 
  
@@ -24,6 +24,7 @@ require ("functions.php");
  								<span class="badge red mr-1">Лидер продаж</span>
  							</a>
  						</div> -->
+
 
  						<p class="lead">
  							<span class="mr-1">
