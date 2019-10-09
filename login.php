@@ -5,7 +5,6 @@ session_start();
 
 <?php
 require ("header.html");
-
 ?>
 
 	<main>
@@ -33,7 +32,7 @@ require ("header.html");
 			$login = $_POST['login'];
 
 			$query = "SELECT * FROM purchaser WHERE purchaser_login='$login' and purchaser_pass='$password'";
-			$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+			$result = mysqli_query($link, $query) or die(mysqli_error($link));
 			$count = mysqli_num_rows($result);
 
 			if ($count == 1) {

@@ -15,7 +15,7 @@ require ("header.html");
 			$login = $_POST['login'];
 
 			$query = "INSERT INTO purchaser (purchaser_login, purchaser_name , purchaser_pass, purchaser_email, purchaser_cab) VALUES ('$login', '$username', '$password', '$email' , '1') ";
-			$result = mysqli_query($connection, $query);
+			$result = mysqli_query($link, $query);
 
 			if ($result) {
 				$smsg = "Регистрация прошла успешно";
