@@ -26,6 +26,10 @@ require("functions.php");
  								<span class="badge red mr-1">Лидер продаж</span>
  							</a>
  						</div> -->
+ 						<?php 
+ 							$products = get_product();
+ 						?>
+ 						
 
 
  						<p class="lead">
@@ -37,7 +41,8 @@ require("functions.php");
  							</span>
  						</p>
  						<p class="lead font-weight-bold">Описание</p>
- 						<p><?php print_r(get_idproduct($link)); ?> </p>
+ 						<p> <?=$product['product_desc'] ?> </p>
+ 						
 
  						<form action="" class="d-flex justify-content-left">
  							<input type="number" value="1" aria-label="Search" style="width: 100px;" class="form-control">

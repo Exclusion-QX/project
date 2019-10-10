@@ -1,9 +1,9 @@
 <?php
 
-	function get_idproduct($link) {
+	function get_idproduct() {
 
-		/*global $link;
-*/		/*$sql = "SELECT id_product FROM product";*/
+		global $link;
+		/*$sql = "SELECT id_product FROM product";*/
 
 		$sql = "SELECT product_desc FROM product WHERE id_product ='1'";
 
