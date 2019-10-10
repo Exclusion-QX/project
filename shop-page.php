@@ -37,7 +37,7 @@ require("functions.php");
  							</span>
  						</p>
  						<p class="lead font-weight-bold">Описание</p>
- 						<p><?php print_r($idproduct); ?> </p>
+ 						<p><?php print_r(get_idproduct($link)); ?> </p>
 
  						<form action="" class="d-flex justify-content-left">
  							<input type="number" value="1" aria-label="Search" style="width: 100px;" class="form-control">

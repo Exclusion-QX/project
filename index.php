@@ -1,6 +1,8 @@
 
 <?php
 require("header.html");
+require("connect.php");
+require("functions.php");
 ?>
 
  	
@@ -106,7 +108,7 @@ require("header.html");
 
  	<!-- MENU  -->
  		<div class="container">
- 			<nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+ 			<nav class="navbar navbar-expand-lg navbar-dark lighten-3 mt-3 mb-5" style="background-color: #45526e;">
  				<span class="navbar-brand">Меню</span>
 
  				<button class="navbar-toggler" type="button"
@@ -146,6 +148,13 @@ require("header.html");
 
  			<section class="text-center mb-4">
  				<div class="row wow fadeIn">
+ 				<?php 
+ 					$products = get_product();
+ 				?>
+
+ 				<?php
+ 				 foreach ($products as $product): ?>
+
  					<div class="col-lg-3 col-md-6 mb-4">
  						<div class="card">
 
@@ -158,7 +167,7 @@ require("header.html");
 
 							<div class="card-body text-center">
 								<a href="shop-page.php" class="grey-text">
-									<h5>Процессоры</h5>
+									<h5><?=$product['product_name'] ?></h5>
 								</a>
 
 								<h5>
@@ -168,7 +177,7 @@ require("header.html");
 								</h5>
 
 								<h4 class="font-weight-bold blue-text">
-									<strong>500$</strong>
+									<strong><?=$product['product_price'] ?></strong>
 								</h4>
 
 							</div>
@@ -176,220 +185,222 @@ require("header.html");
  						</div>
  					</div>
 
+ 				<?php endforeach; ?>
 
- 					<div class="col-lg-3 col-md-6 mb-4">
+
+ 					<!-- <div class="col-lg-3 col-md-6 mb-4">
  						<div class="card">
-
+ 					
  							<div class="view overlay">
  								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
  								<a href="">
  									<div class="mask rgba-white-slight"></div>
  								</a>
  							</div>
-
-							<div class="card-body text-center">
-								<a href="" class="grey-text">
-									<h5>Процессоры</h5>
-								</a>
-
-								<h5>
-									<strong>
-										<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
-									</strong>
-								</h5>
-
-								<h4 class="font-weight-bold blue-text">
-									<strong>500$</strong>
-								</h4>
-
-							</div>
-
+ 					
+ 												<div class="card-body text-center">
+ 													<a href="" class="grey-text">
+ 														<h5>Процессоры</h5>
+ 													</a>
+ 					
+ 													<h5>
+ 														<strong>
+ 															<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
+ 														</strong>
+ 													</h5>
+ 					
+ 													<h4 class="font-weight-bold blue-text">
+ 														<strong>500$</strong>
+ 													</h4>
+ 					
+ 												</div>
+ 					
  						</div>
  					</div>
-
-
+ 					
+ 					
  					<div class="col-lg-3 col-md-6 mb-4">
  						<div class="card">
-
+ 					
  							<div class="view overlay">
  								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
  								<a href="">
  									<div class="mask rgba-white-slight"></div>
  								</a>
  							</div>
-
-							<div class="card-body text-center">
-								<a href="" class="grey-text">
-									<h5>Процессоры</h5>
-								</a>
-
-								<h5>
-									<strong>
-										<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
-									</strong>
-								</h5>
-
-								<h4 class="font-weight-bold blue-text">
-									<strong>500$</strong>
-								</h4>
-
-							</div>
-
+ 					
+ 												<div class="card-body text-center">
+ 													<a href="" class="grey-text">
+ 														<h5>Процессоры</h5>
+ 													</a>
+ 					
+ 													<h5>
+ 														<strong>
+ 															<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
+ 														</strong>
+ 													</h5>
+ 					
+ 													<h4 class="font-weight-bold blue-text">
+ 														<strong>500$</strong>
+ 													</h4>
+ 					
+ 												</div>
+ 					
  						</div>
  					</div>
-
-
+ 					
+ 					
  					<div class="col-lg-3 col-md-6 mb-4">
  						<div class="card">
-
+ 					
  							<div class="view overlay">
  								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
  								<a href="">
  									<div class="mask rgba-white-slight"></div>
  								</a>
  							</div>
-
-							<div class="card-body text-center">
-								<a href="" class="grey-text">
-									<h5>Процессоры</h5>
-								</a>
-
-								<h5>
-									<strong>
-										<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
-									</strong>
-								</h5>
-
-								<h4 class="font-weight-bold blue-text">
-									<strong>500$</strong>
-								</h4>
-
-							</div>
-
+ 					
+ 												<div class="card-body text-center">
+ 													<a href="" class="grey-text">
+ 														<h5>Процессоры</h5>
+ 													</a>
+ 					
+ 													<h5>
+ 														<strong>
+ 															<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
+ 														</strong>
+ 													</h5>
+ 					
+ 													<h4 class="font-weight-bold blue-text">
+ 														<strong>500$</strong>
+ 													</h4>
+ 					
+ 												</div>
+ 					
  						</div>
  					</div>
- 				</div>
- 				<div class="row wow fadeIn">
+ 					 				</div>
+ 					 				<div class="row wow fadeIn">
  					<div class="col-lg-3 col-md-6 mb-4">
  						<div class="card">
-
+ 					
  							<div class="view overlay">
  								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
  								<a href="">
  									<div class="mask rgba-white-slight"></div>
  								</a>
  							</div>
-
-							<div class="card-body text-center">
-								<a href="" class="grey-text">
-									<h5>Процессоры</h5>
-								</a>
-
-								<h5>
-									<strong>
-										<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
-									</strong>
-								</h5>
-
-								<h4 class="font-weight-bold blue-text">
-									<strong>500$</strong>
-								</h4>
-
-							</div>
-
+ 					
+ 												<div class="card-body text-center">
+ 													<a href="" class="grey-text">
+ 														<h5>Процессоры</h5>
+ 													</a>
+ 					
+ 													<h5>
+ 														<strong>
+ 															<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
+ 														</strong>
+ 													</h5>
+ 					
+ 													<h4 class="font-weight-bold blue-text">
+ 														<strong>500$</strong>
+ 													</h4>
+ 					
+ 												</div>
+ 					
  						</div>
  					</div>
-
+ 					
  					<div class="col-lg-3 col-md-6 mb-4">
  						<div class="card">
-
+ 					
  							<div class="view overlay">
  								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
  								<a href="">
  									<div class="mask rgba-white-slight"></div>
  								</a>
  							</div>
-
-							<div class="card-body text-center">
-								<a href="" class="grey-text">
-									<h5>Процессоры</h5>
-								</a>
-
-								<h5>
-									<strong>
-										<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
-									</strong>
-								</h5>
-
-								<h4 class="font-weight-bold blue-text">
-									<strong>500$</strong>
-								</h4>
-
-							</div>
-
+ 					
+ 												<div class="card-body text-center">
+ 													<a href="" class="grey-text">
+ 														<h5>Процессоры</h5>
+ 													</a>
+ 					
+ 													<h5>
+ 														<strong>
+ 															<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
+ 														</strong>
+ 													</h5>
+ 					
+ 													<h4 class="font-weight-bold blue-text">
+ 														<strong>500$</strong>
+ 													</h4>
+ 					
+ 												</div>
+ 					
  						</div>
  					</div>
-
+ 					
  					<div class="col-lg-3 col-md-6 mb-4">
  						<div class="card">
-
+ 					
  							<div class="view overlay">
  								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
  								<a href="">
  									<div class="mask rgba-white-slight"></div>
  								</a>
  							</div>
-
-							<div class="card-body text-center">
-								<a href="" class="grey-text">
-									<h5>Процессоры</h5>
-								</a>
-
-								<h5>
-									<strong>
-										<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
-									</strong>
-								</h5>
-
-								<h4 class="font-weight-bold blue-text">
-									<strong>500$</strong>
-								</h4>
-
-							</div>
-
+ 					
+ 												<div class="card-body text-center">
+ 													<a href="" class="grey-text">
+ 														<h5>Процессоры</h5>
+ 													</a>
+ 					
+ 													<h5>
+ 														<strong>
+ 															<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
+ 														</strong>
+ 													</h5>
+ 					
+ 													<h4 class="font-weight-bold blue-text">
+ 														<strong>500$</strong>
+ 													</h4>
+ 					
+ 												</div>
+ 					
  						</div>
  					</div>
-
+ 					
  					<div class="col-lg-3 col-md-6 mb-4">
  						<div class="card">
-
+ 					
  							<div class="view overlay">
  								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
  								<a href="">
  									<div class="mask rgba-white-slight"></div>
  								</a>
  							</div>
-
-							<div class="card-body text-center">
-								<a href="" class="grey-text">
-									<h5>Процессоры</h5>
-								</a>
-
-								<h5>
-									<strong>
-										<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
-									</strong>
-								</h5>
-
-								<h4 class="font-weight-bold blue-text">
-									<strong>500$</strong>
-								</h4>
-
-							</div>
-
+ 					
+ 												<div class="card-body text-center">
+ 													<a href="" class="grey-text">
+ 														<h5>Процессоры</h5>
+ 													</a>
+ 					
+ 													<h5>
+ 														<strong>
+ 															<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
+ 														</strong>
+ 													</h5>
+ 					
+ 													<h4 class="font-weight-bold blue-text">
+ 														<strong>500$</strong>
+ 													</h4>
+ 					
+ 												</div>
+ 					
  						</div>
  					</div>
- 				</div>
+ 					 				--> </div>
  		
  			</section>
 
