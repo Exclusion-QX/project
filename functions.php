@@ -18,7 +18,7 @@
 	function get_product() {
 
 		global $link;
-		$sql = "SELECT * FROM product";
+		$sql = "SELECT * FROM product WHERE product_category ='Процессор'";
 		$result = mysqli_query($link, $sql);
 		$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		return $products;

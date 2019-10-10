@@ -165,19 +165,25 @@ require("functions.php");
  								</a>
  							</div>
 
-							<div class="card-body text-center">
+							<div class="card-body text-center card-desc">
 								<a href="shop-page.php" class="grey-text">
-									<h5><?=$product['product_name'] ?></h5>
+									<h5><?=$product['product_category'] ?></h5>
 								</a>
 
 								<h5>
 									<strong>
-										<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
+										<a href="" class="dark-grey-text"><?=$product['product_name'] ?> <!-- <span class="badge-pill danger-color">NEW</span> --></a>
 									</strong>
 								</h5>
 
+								<p>
+									<?=mb_substr($product['product_desc'], 0, 50, 'UTF-8').'...' ?>								
+								</p>
+
+								<hr>
+
 								<h4 class="font-weight-bold blue-text">
-									<strong><?=$product['product_price'] ?></strong>
+									<strong><?=$product['product_price'].'₽' ?></strong>
 								</h4>
 
 							</div>

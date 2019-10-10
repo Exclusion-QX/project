@@ -73,3 +73,17 @@ header {
 	} 
 }
 
+.card hr {
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
+.card h4 {
+	color: #235e92 !important;
+}
+
+.card-desc {
+	padding: 0.4rem;
+	max-height: 250px;
+}
+
