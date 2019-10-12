@@ -1,16 +1,15 @@
 <?php
 
-	function get_idproduct($link) {
+	function get_product_by_id($id_product) {
 
-		/*global $link;
-*/		/*$sql = "SELECT id_product FROM product";*/
+		global $link;
 
-		$sql = "SELECT product_desc FROM product WHERE id_product ='1'";
+		$sql = "SELECT * FROM product WHERE id_product = ".$id_product;
 
 		$result = mysqli_query($link, $sql);
-		$idproduct = mysqli_fetch_all($result);
+		$product = mysqli_fetch_assoc($result);
 
-		return $idproduct;
+		return $product;
 	}
 
 /*$idproduct = get_idproduct($link);*/
@@ -24,3 +23,4 @@
 		return $products;
 		
 	}
+

@@ -1,16 +1,7 @@
  
 <?php
 
-require("connect.php");
-require("functions.php");
-
-$id_product = $_GET['id_product'];
-if (!is_numeric($id_product)) exit();
-
-require("header.php");
-
-//ПОЛУЧАЕМ МАССИВ ПРОДУКТА
-$product = get_product_by_id($id_product);
+require("header.html");
 ?>
 
  
@@ -22,18 +13,17 @@ $product = get_product_by_id($id_product);
  				</div>
  				<div class="col-md-5 mb-14">
  					<div class="p-4">
- 						<!-- <div class="mb-3">
+ 						<div class="mb-3">
  							<a href="">
- 								<span class="badge purple mr-1">Категория 2</span>
+ 								<span class="badge purple mr-1">Category 2</span>
  							</a>
  							<a href="">
- 								<span class="badge blue mr-1">Новинка</span>
+ 								<span class="badge blue mr-1">New</span>
  							</a>
  							<a href="">
- 								<span class="badge red mr-1">Лидер продаж</span>
+ 								<span class="badge red mr-1">Bestseller</span>
  							</a>
- 						</div> -->
-
+ 						</div>
 
  						<p class="lead">
  							<span class="mr-1">
@@ -43,19 +33,14 @@ $product = get_product_by_id($id_product);
  								100$
  							</span>
  						</p>
- 						<p class="lead font-weight-bold">Описание</p>
 
-						<?php 
-						
-
-						echo '<pre>';
-						print_r($product);
-						?>
+ 						<p class="lead font-weight-bold">Desciption</p>
+ 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui blanditiis minus quae ipsa eveniet non fugit, molestias, obcaecati minima, tempora, doloremque sit repellat asperiores </p>
 
  						<form action="" class="d-flex justify-content-left">
  							<input type="number" value="1" aria-label="Search" style="width: 100px;" class="form-control">
  							<button type="submit" class="btn btn-primary btn-md my-0 p">
- 								Добавить в корзину <i class="fa fa-shopping-cart ml-1"></i>
+ 								Add to card <i class="fa fa-shopping-cart ml-1"></i>
  							</button>
  						</form>
  					</div>

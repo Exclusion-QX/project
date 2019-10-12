@@ -160,19 +160,20 @@ require("functions.php");
 
  							<div class="view overlay">
  								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
- 								<a href="shop-page.php">
+ 								<a href="shop-page.php?id_product=<?=$product['id_product']?>">
  									<div class="mask rgba-white-slight"></div>
  								</a>
  							</div>
 
 							<div class="card-body text-center card-desc">
-								<a href="shop-page.php" class="grey-text">
+								<a href="shop-page.php?id_product=<?=$product['id_product']?>" class="grey-text">
 									<h5><?=$product['product_category'] ?></h5>
 								</a>
+								
 
 								<h5>
 									<strong>
-										<a href="" class="dark-grey-text"><?=$product['product_name'] ?> <!-- <span class="badge-pill danger-color">NEW</span> --></a>
+										<a href="shop-page.php?id_product=<?=$product['id_product']?>" class="dark-grey-text"><?=$product['product_name'] ?> <!-- <span class="badge-pill danger-color">NEW</span> --></a>
 									</strong>
 								</h5>
 
