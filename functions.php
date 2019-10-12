@@ -12,8 +12,6 @@
 		return $product;
 	}
 
-/*$idproduct = get_idproduct($link);*/
-
 	function get_product() {
 
 		global $link;

@@ -33,6 +33,10 @@ $product = get_product_by_id($id_product);
  								<span class="badge red mr-1">Лидер продаж</span>
  							</a>
  						</div> -->
+ 						<?php 
+ 							$products = get_product();
+ 						?>
+ 						
 
 
  						<p class="lead">
