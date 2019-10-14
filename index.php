@@ -108,6 +108,15 @@ require("functions.php");
 
  	<!-- MENU  -->
  		<div class="container">
+
+			<?php 
+				$page = isset($_GET['page']) ? $_GET['page']: 1;
+				$limit = 6;
+				$offset = $limit * ($page - 1);
+				$products = get_product($limit, $offset);
+
+			?>
+
  			<nav class="navbar navbar-expand-lg navbar-dark lighten-3 mt-3 mb-5" style="background-color: #45526e;">
  				<span class="navbar-brand">Меню</span>
 
@@ -148,9 +157,7 @@ require("functions.php");
 
  			<section class="text-center mb-4">
  				<div class="row wow fadeIn">
- 				<?php 
- 					$products = get_product();
- 				?>
+ 				
 
  				<?php
  				 foreach ($products as $product): ?>
@@ -194,220 +201,7 @@ require("functions.php");
 
  				<?php endforeach; ?>
 
-
- 					<!-- <div class="col-lg-3 col-md-6 mb-4">
- 						<div class="card">
- 					
- 							<div class="view overlay">
- 								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
- 								<a href="">
- 									<div class="mask rgba-white-slight"></div>
- 								</a>
- 							</div>
- 					
- 												<div class="card-body text-center">
- 													<a href="" class="grey-text">
- 														<h5>Процессоры</h5>
- 													</a>
- 					
- 													<h5>
- 														<strong>
- 															<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
- 														</strong>
- 													</h5>
- 					
- 													<h4 class="font-weight-bold blue-text">
- 														<strong>500$</strong>
- 													</h4>
- 					
- 												</div>
- 					
- 						</div>
  					</div>
- 					
- 					
- 					<div class="col-lg-3 col-md-6 mb-4">
- 						<div class="card">
- 					
- 							<div class="view overlay">
- 								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
- 								<a href="">
- 									<div class="mask rgba-white-slight"></div>
- 								</a>
- 							</div>
- 					
- 												<div class="card-body text-center">
- 													<a href="" class="grey-text">
- 														<h5>Процессоры</h5>
- 													</a>
- 					
- 													<h5>
- 														<strong>
- 															<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
- 														</strong>
- 													</h5>
- 					
- 													<h4 class="font-weight-bold blue-text">
- 														<strong>500$</strong>
- 													</h4>
- 					
- 												</div>
- 					
- 						</div>
- 					</div>
- 					
- 					
- 					<div class="col-lg-3 col-md-6 mb-4">
- 						<div class="card">
- 					
- 							<div class="view overlay">
- 								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
- 								<a href="">
- 									<div class="mask rgba-white-slight"></div>
- 								</a>
- 							</div>
- 					
- 												<div class="card-body text-center">
- 													<a href="" class="grey-text">
- 														<h5>Процессоры</h5>
- 													</a>
- 					
- 													<h5>
- 														<strong>
- 															<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
- 														</strong>
- 													</h5>
- 					
- 													<h4 class="font-weight-bold blue-text">
- 														<strong>500$</strong>
- 													</h4>
- 					
- 												</div>
- 					
- 						</div>
- 					</div>
- 					 				</div>
- 					 				<div class="row wow fadeIn">
- 					<div class="col-lg-3 col-md-6 mb-4">
- 						<div class="card">
- 					
- 							<div class="view overlay">
- 								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
- 								<a href="">
- 									<div class="mask rgba-white-slight"></div>
- 								</a>
- 							</div>
- 					
- 												<div class="card-body text-center">
- 													<a href="" class="grey-text">
- 														<h5>Процессоры</h5>
- 													</a>
- 					
- 													<h5>
- 														<strong>
- 															<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
- 														</strong>
- 													</h5>
- 					
- 													<h4 class="font-weight-bold blue-text">
- 														<strong>500$</strong>
- 													</h4>
- 					
- 												</div>
- 					
- 						</div>
- 					</div>
- 					
- 					<div class="col-lg-3 col-md-6 mb-4">
- 						<div class="card">
- 					
- 							<div class="view overlay">
- 								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
- 								<a href="">
- 									<div class="mask rgba-white-slight"></div>
- 								</a>
- 							</div>
- 					
- 												<div class="card-body text-center">
- 													<a href="" class="grey-text">
- 														<h5>Процессоры</h5>
- 													</a>
- 					
- 													<h5>
- 														<strong>
- 															<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
- 														</strong>
- 													</h5>
- 					
- 													<h4 class="font-weight-bold blue-text">
- 														<strong>500$</strong>
- 													</h4>
- 					
- 												</div>
- 					
- 						</div>
- 					</div>
- 					
- 					<div class="col-lg-3 col-md-6 mb-4">
- 						<div class="card">
- 					
- 							<div class="view overlay">
- 								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
- 								<a href="">
- 									<div class="mask rgba-white-slight"></div>
- 								</a>
- 							</div>
- 					
- 												<div class="card-body text-center">
- 													<a href="" class="grey-text">
- 														<h5>Процессоры</h5>
- 													</a>
- 					
- 													<h5>
- 														<strong>
- 															<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
- 														</strong>
- 													</h5>
- 					
- 													<h4 class="font-weight-bold blue-text">
- 														<strong>500$</strong>
- 													</h4>
- 					
- 												</div>
- 					
- 						</div>
- 					</div>
- 					
- 					<div class="col-lg-3 col-md-6 mb-4">
- 						<div class="card">
- 					
- 							<div class="view overlay">
- 								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
- 								<a href="">
- 									<div class="mask rgba-white-slight"></div>
- 								</a>
- 							</div>
- 					
- 												<div class="card-body text-center">
- 													<a href="" class="grey-text">
- 														<h5>Процессоры</h5>
- 													</a>
- 					
- 													<h5>
- 														<strong>
- 															<a href="" class="dark-grey-text">Intel Core-i9 <span class="badge-pill danger-color">NEW</span></a>
- 														</strong>
- 													</h5>
- 					
- 													<h4 class="font-weight-bold blue-text">
- 														<strong>500$</strong>
- 													</h4>
- 					
- 												</div>
- 					
- 						</div>
- 					</div>
- 					 				--> </div>
  		
  			</section>
 
@@ -415,37 +209,27 @@ require("functions.php");
  			<nav class="d-flex justify-content-center wow fadeIn">
  				<ul class="pagination pg-blue">
  					<li class="page-item">
- 						<a href="" class="page-link" aria-label="Previous">
+ 						<a href="index.php?page=<?= $page - 1?>" class="page-link" aria-label="Previous">
  							<span aria-hidden="true">&laquo;</span>
  						</a>
  					</li>
- 					<li class="page-item active">
- 						<a href="" class="page-link" aria-label="Previous">
+ 					<li class="page-item">
+ 						<a href="index.php?page=1" class="page-link" aria-label="Previous">
  							<span aria-hidden="true">1</span>
  						</a>
  					</li>
  					<li class="page-item">
- 						<a href="" class="page-link" aria-label="Previous">
+ 						<a href="index.php?page=2" class="page-link" aria-label="Previous">
  							<span aria-hidden="true">2</span>
  						</a>
  					</li>
  					<li class="page-item">
- 						<a href="" class="page-link" aria-label="Previous">
+ 						<a href="index.php?page=3" class="page-link" aria-label="Previous">
  							<span aria-hidden="true">3</span>
  						</a>
  					</li>
  					<li class="page-item">
- 						<a href="" class="page-link" aria-label="Previous">
- 							<span aria-hidden="true">4</span>
- 						</a>
- 					</li>
- 					<li class="page-item">
- 						<a href="" class="page-link" aria-label="Previous">
- 							<span aria-hidden="true">5</span>
- 						</a>
- 					</li>
- 					<li class="page-item">
- 						<a href="" class="page-link" aria-label="Next">
+ 						<a href="index.php?page=<?= $page + 1?>" class="page-link" aria-label="Next">
  							<span aria-hidden="true">&raquo;</span>
  						</a>
  					</li>

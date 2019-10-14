@@ -12,7 +12,17 @@
 		return $product;
 	}
 
-	function get_product() {
+	function get_product($limit, $offset) {
+
+		global $link;
+		$sql = "SELECT * FROM product WHERE product_category ='Процессор' LIMIT $limit OFFSET $offset";
+		$result = mysqli_query($link, $sql);
+		$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+		return $products;
+		
+	}
+
+	function get_product_desc() {
 
 		global $link;
 		$sql = "SELECT * FROM product WHERE product_category ='Процессор'";
@@ -21,4 +31,5 @@
 		return $products;
 		
 	}
+
 

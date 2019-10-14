@@ -34,7 +34,7 @@ $product = get_product_by_id($id_product);
  							</a>
  						</div> -->
  						<?php 
- 							$products = get_product();
+ 							$products = get_product_desc();
  						?>
  						
 
