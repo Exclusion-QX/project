@@ -87,3 +87,76 @@ header {
 	max-height: 250px;
 }
 
+/*menu*/
+
+
+
+.dwn-menu ul,
+.dws-menu ol{
+	list-style: none;
+}
+
+.dws-menu > ul{
+	display: flex;
+	justify-content: center;
+}
+
+.dws-menu > ul li a{
+	display: block;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.dws-menu > ul li{
+	position: relative;
+	border-right: 1px solid #c7c8ca;
+	min-width: 170px;
+	float: left;
+}
+
+.dws-menu > ul li > a i.fa{
+	position: absolute;;
+	top: 15px;
+	left: 12px;
+	font-size: 18px;
+}
+
+.dws-menu > ul li:first-child{
+	border-left: 1px solid #c7c8ca;
+}
+
+.dws-menu li a:hover{
+	background: #58647f;
+	box-shadow: 1px 5px 10px -5px black;
+	transition: all 0.3s ease;
+}
+
+.dws-menu li ul{
+	position: absolute;
+	z-index: 10000;
+	display: none;
+	right: 0px;
+
+}
+
+.dws-menu li > ul li{
+	border: 1px solid #c7c8ca;
+	width: 170px;
+}
+
+.dws-menu li > ul li,
+.dws-menu ol{
+	list-style: none;
+}
+
+.dws-menu li > ul li a{
+	padding: 10px;
+	text-transform: none;
+	background: #e4e4e5;
+	text-align: center;
+}
+
+.dws-menu li:hover > ul{
+	display: block;
+}

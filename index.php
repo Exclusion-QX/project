@@ -106,7 +106,7 @@ require("functions.php");
 
  	<main>
 
- 	<!-- MENU  -->
+ 
  		<div class="container">
 
 			<?php 
@@ -116,6 +116,8 @@ require("functions.php");
 				$products = get_product($limit, $offset);
 
 			?>
+
+			<!-- MENU  -->
 
  			<nav class="navbar navbar-expand-lg navbar-dark lighten-3 mt-3 mb-5" style="background-color: #45526e;">
  				<span class="navbar-brand">Меню</span>
@@ -127,22 +129,25 @@ require("functions.php");
 					<span class="navbar-toggler-icon"></span>
 
 				</button>
-				<div class="collapse navbar-collapse" id="nextNav">
+				<div class="collapse navbar-collapse dws-menu" id="nextNav">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item">
-							<a href="#" class="nav-link">Все</a>
-						</li>
-						<li class="nav-item active">
-							<a href="#" class="nav-link">Процессоры</a>
-						</li>
-						<li class="nav-item">
-							<a href="#" class="nav-link">Видеокарты</a>
-						</li>
-						<li class="nav-item">
-							<a href="#" class="nav-link">Материнские платы</a>
+							<a href="#" class="nav-link">Комплектующие</a>
 						</li>
 						<li class="nav-item">
 							<a href="#" class="nav-link">Компьютеры</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">Конструктор</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">Ноутбуки</a>
+							<ul>
+								<li><a href="#">Нетбуки</a></li>
+								<li><a href="#">Ультрабук</a></li>
+								<li><a href="#">Бюджетные ноутбуки</a></li>
+								<li><a href="#">Игровые ноутбуки</a></li>
+							</ul>
 						</li>
 					</ul>
 
@@ -239,14 +244,6 @@ require("functions.php");
  		<div class="mini-cart"></div>
  	</main>
 
- 
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
 </body>
 
 <?php

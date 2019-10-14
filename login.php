@@ -32,13 +32,6 @@ require ("header.html");
 				 $fsmsg = "Ошибка!"; }
 			}
 		
-
-		if (isset($_SESSION['purchaser_login'])) {
-			$login = $_SESSION['purchaser_login'];
-			echo "Hello " . $login . " ";
-			echo "<a href='logout.php' class='btn btn-lg btn-primary'> Выйти </a>";
-		}
-
 			?>
 
 <div class="container" style="margin-top: 100px">
@@ -55,6 +48,13 @@ require ("header.html");
 			</form>
 		</div>
 
+	<?php
+		if (isset($_SESSION['purchaser_login'])) {
+			$login = $_SESSION['purchaser_login'];
+			echo "Hello " . $login . " ";
+			echo "<a href='logout.php' class='btn btn-lg btn-primary'> Выйти </a>";
+		}
+	?>
 
 	</main>
 
