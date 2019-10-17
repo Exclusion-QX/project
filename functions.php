@@ -31,5 +31,18 @@
 		return $products;
 		
 	}
+?>
+	<script>
+					function password_check (password, repassword){
+
+							if (password == repassword) {
+									var smsg = "Регистрация прошла успешно";
+									return smsg;
+								} else {
+									var fsmsg = "Пароли не совпадают!";
+									return fsmsg;
+								} 
+					}
+	</script>
 
 

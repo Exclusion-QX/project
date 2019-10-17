@@ -151,12 +151,19 @@ header {
 }
 
 .dws-menu li > ul li a{
-	padding: 10px;
+	padding: 5px;
 	text-transform: none;
 	background: #e4e4e5;
 	text-align: center;
 }
 
-.dws-menu li:hover > ul{
+.dws-menu li > ul li:hover a{
+	color: #fff;
+}
+
+
+.dws-menu li:hover ul,
+.dws-menu li:hover ul li ul{
 	display: block;
 }
+

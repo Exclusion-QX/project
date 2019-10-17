@@ -132,7 +132,19 @@ require("functions.php");
 				<div class="collapse navbar-collapse dws-menu" id="nextNav">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item">
-							<a href="#" class="nav-link">Комплектующие</a>
+							<a class="nav-link">Комплектующие</a>
+							<ul>
+							
+								<li><a href="#">Процессоры</a></li>
+								<li><a href="#">Видеокарта</a></li>
+								<li><a href="#">Материнская плата</a></li>
+								<li><a href="#">Оперативная память</a></li>
+								<li><a href="#">Охлаждение</a></li>
+								<li><a href="#">Корпус</a></li>
+								<li><a href="#">SSD накопитель</a></li>
+								<li><a href="#">Дисковой накопитель</a></li>
+							</ul>
+					
 						</li>
 						<li class="nav-item">
 							<a href="#" class="nav-link">Компьютеры</a>
@@ -150,6 +162,8 @@ require("functions.php");
 							</ul>
 						</li>
 					</ul>
+					 
+
 
 					<form class="form-inline">
 						<div class="md-form my-0">
