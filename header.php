@@ -1,3 +1,7 @@
+<?php 
+if(isset($_COOKIE['username']))
+	$username = $_COOKIE['username'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,10 +68,24 @@
 
 					<ul class="navbar-nav mr-0">
 						<li class="nav-item">
-							<a href="login.php" class="nav-link waves-effect">Авторизация</a>
+							<?php 
+								if (isset($username)){?>
+									<a href="private.php" class="nav-link waves-effect"><?=$username ?></a>
+								<?}
+								else {?>
+									<a href="login.php" class="nav-link waves-effect">Авторизация</a>
+									<?}?>
+	
 						</li>
 						<li class="nav-item">
-							<a href="registration.php" class="nav-link waves-effect">Регистрация</a>
+							
+							<?php 
+								if (isset($username)){?>
+									<a href="logout.php" class="nav-link waves-effect">Выход</a>
+								<?}
+								else { ?>									
+									<a href="registration.php" class="nav-link waves-effect">Регистрация</a>
+								<?}?>
 						</li>
 					</ul>
 				</div>

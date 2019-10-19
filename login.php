@@ -1,10 +1,12 @@
 <?php
 session_start();
+//setcookie('username', 0, time() - 2592000, '/');
 ?>
 
 
 <?php
-require ("header.html");
+require ("header.php");
+
 ?>
 
 	<main>
@@ -15,22 +17,29 @@ require ("header.html");
 
 		if (isset($_POST['password'] ) and isset($_POST['login'] )) {
 
-			$password = $_POST['password'];
+			$password = md5('ds4m34dfs9'.$_POST['password'].'35sf56')	;
 			$login = $_POST['login'];
 
 			$query = "SELECT * FROM purchaser WHERE purchaser_login='$login' and purchaser_pass='$password'";
 			$result = mysqli_query($link, $query) or die(mysqli_error($link));
+			if ($result) {
+				$row = mysqli_fetch_row($result);
+			}
 			$count = mysqli_num_rows($result);
 
 			if ($count == 1) {
-				$_SESSION['purchaser_login'] = $login;
+				$_SESSION['name'] = $row[7];
+				$_SESSION['id'] = $row[0];
+				$_SESSION['email'] = $row[6];
+				$_SESSION['login'] = $row[2];
+
 			} else {  
 				 $fsmsg = "Ошибка!"; }
 			}
 		
 			?>
 
-<div class="container" style="margin-top: 100px">
+		<div class="container" style="margin-top: 100px">
 			<form class="form-signin" method="POST">
 				<h2>Вход</h2><br>
 						
@@ -44,13 +53,16 @@ require ("header.html");
 			</form>
 		</div>
 
-	<?php
-		if (isset($_SESSION['purchaser_login'])) {
-			$login = $_SESSION['purchaser_login'];
-			echo "Hello " . $login . " ";
-			echo "<a href='logout.php' class='btn btn-lg btn-primary'> Выйти </a>";
-		}
-	?>
+		<?php
+			if (isset($_SESSION['name'])) {
+				$login = $_SESSION['name'];
+				$_COOKIE['username'] = $login;
+				var_dump($_COOKIE['username']);
+				//echo "Hello " . $login . " ";
+				echo "<a href='private.php' class='btn btn-lg btn-primary'> Перейти в личный кабинет </a>";
+				echo "<a href='logout.php' class='btn btn-lg btn-primary'> Выйти </a>";
+			}
+		?>
 
 	</main>
 

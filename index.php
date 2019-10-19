@@ -1,6 +1,6 @@
 
 <?php
-require("header.html");
+require("header.php");
 require("connect.php");
 require("functions.php");
 ?>
