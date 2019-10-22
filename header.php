@@ -57,7 +57,7 @@ if(isset($_COOKIE['username']))
 					<ul class="navbar-nav nav-flex-icons">
 						<li class="nav-item">
 							<a href="cart.php" class="nav-link waves-effect">
-								<span class="badge red z-depth-1 mr-1">12</span>
+								<span id="cart-count" class="badge red z-depth-1 mr-1"></span>
 								<i class="fa fa-shopping-cart"></i>
 								<span class="clearfix d-none d-sm-inline-block">Корзина</span>
 							</a>

@@ -1,5 +1,4 @@
- 
-<?php
+ <?php
 
 require("connect.php");
 require("functions.php");
@@ -53,16 +52,16 @@ $product = get_product_by_id($id_product);
 
  							<div class="d-flex justify-content-left">
  							<input type="number" value="1" aria-label="Search" style="width: 100px;" class="form-control">
- 							<button type="submit" class="add-to-cart btn btn-primary btn-md my-0 p" data-art="<?=$product['id_product']?>">
+ 							<a href="#" data-id="<?php echo $product['id_product'];?>" class="add-to-cart btn btn-primary btn-md my-0 p">
  								Добавить в корзину <i class="fa fa-shopping-cart ml-1"></i>
- 							</button>
+ 							</a>
  							</div>
  							
- 							<script>
+ 							<!-- <script>
  								$('button.add-to-cart').on('click', addToCart);
  								
-							
-							</script>
+ 														
+ 														</script> -->
  							
  						
  					</div>
