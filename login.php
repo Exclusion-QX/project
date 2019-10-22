@@ -71,6 +71,5 @@ require ("header.php");
 	require ("footer.html");
 	?>
 
-</body>
 
 </html>

@@ -258,9 +258,10 @@ require("functions.php");
  		<div class="mini-cart"></div>
  	</main>
 
-</body>
+
 
 <?php
 require ("footer.html");
 ?>
 
+</html>

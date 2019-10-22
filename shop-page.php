@@ -12,6 +12,8 @@ require("header.php");
 //ПОЛУЧАЕМ МАССИВ ПРОДУКТА
 $product = get_product_by_id($id_product);
 ?>
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/cart-function.js"></script>
 
  
  	<main class="mt-5 pt-4">
@@ -33,35 +35,36 @@ $product = get_product_by_id($id_product);
  								<span class="badge red mr-1">Лидер продаж</span>
  							</a>
  						</div> -->
- 						<?php 
- 							$products = get_product_desc();
- 						?>
+ 						
  						
 
 
  						<p class="lead">
  							<span class="mr-1">
- 								<del>200$</del>
+ 								<del>200₽</del>
  							</span>
  							<span class="mr-1">
- 								100$
+ 								<?=$product['product_price'].'₽'?>
  							</span>
  						</p>
  						<p class="lead font-weight-bold">Описание</p>
 
-						<?php 
 						
 
-						echo '<pre>';
-						print_r($product);
-						?>
-
- 						<form action="" class="d-flex justify-content-left">
+ 							<div class="d-flex justify-content-left">
  							<input type="number" value="1" aria-label="Search" style="width: 100px;" class="form-control">
- 							<button type="submit" class="btn btn-primary btn-md my-0 p">
+ 							<button type="submit" class="add-to-cart btn btn-primary btn-md my-0 p" data-art="<?=$product['id_product']?>">
  								Добавить в корзину <i class="fa fa-shopping-cart ml-1"></i>
  							</button>
- 						</form>
+ 							</div>
+ 							
+ 							<script>
+ 								$('button.add-to-cart').on('click', addToCart);
+ 								
+							
+							</script>
+ 							
+ 						
  					</div>
  				</div>
  			</div>
@@ -71,7 +74,6 @@ $product = get_product_by_id($id_product);
 <?php
 require ("footer.html");
 ?>
-</body>
 
 
 </html>

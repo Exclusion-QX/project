@@ -81,6 +81,5 @@ require ("functions.php");
 	require ("footer.html");
 	?>
 
-</body>
 
 </html>
