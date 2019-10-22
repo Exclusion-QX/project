@@ -78,8 +78,7 @@ require ("functions.php");
 	</main>
 
 	<?php
-	require ("footer.html");
+	require ("footer.php");
 	?>
 
 
-</html>

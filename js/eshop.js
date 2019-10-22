@@ -1,4 +1,4 @@
-var cart = {}; //моя корзина
+/*var cart = {}; //моя корзина
 
 $('document').ready(function(){
     loadGoods();
@@ -53,3 +53,4 @@ function showMiniCart(){
     }
     $('#mini-cart').html(out);
 }
+*/

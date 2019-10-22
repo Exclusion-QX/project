@@ -68,8 +68,7 @@ require ("header.php");
 
 
 	<?php
-	require ("footer.html");
+	require ("footer.php");
 	?>
 
 
-</html>

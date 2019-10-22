@@ -1,12 +1,3 @@
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
-
-  </body>
 <footer class="page-footer text-center font-small mt-4 wow fadeIn">
 		<div class="pt-4">
 			<a href="#" role="button" class="btn btn-outline-white">Shop <i class="fa fa-graduation-cap ml-2"></i></a>
@@ -44,3 +35,27 @@
 			Net shop
 		</div>
 </footer>
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+
+  <script>
+  	$(document).ready(function() {
+  		$(".add-to-cart").click(function() {
+  			var id = $(this).attr("data-id");
+  			$.post("/cart/addAjax/"+id, {}, function(data) {
+  				$("#cart-count").html(data);
+  			});
+  			return false;
+  		});
+  	});
+  </script>
+
+</body>
+</html>
+

@@ -12,10 +12,10 @@
 		return $product;
 	}
 
-	function get_product($limit, $offset) {
+	function get_product_by_category($limit, $offset, $category) {
 
 		global $link;
-		$sql = "SELECT * FROM product WHERE product_category ='Процессор' LIMIT $limit OFFSET $offset";
+		$sql = "SELECT * FROM product WHERE product_category ='$category' LIMIT $limit OFFSET $offset";
 		$result = mysqli_query($link, $sql);
 		$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		return $products;
@@ -31,18 +31,17 @@
 		return $products;
 		
 	}
-?>
-	<script>
-					function password_check (password, repassword){
 
-							if (password == repassword) {
-									var smsg = "Регистрация прошла успешно";
-									return smsg;
-								} else {
-									var fsmsg = "Пароли не совпадают!";
-									return fsmsg;
-								} 
-					}
-	</script>
+	function get_product() {
+
+		global $link;
+		$sql = "SELECT * FROM product";
+		$result = mysqli_query($link, $sql);
+		$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+		return $products;
+		
+	}
+
+
 
 

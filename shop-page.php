@@ -72,8 +72,7 @@ $product = get_product_by_id($id_product);
  	</main> 	
 
 <?php
-require ("footer.html");
+require ("footer.php");
 ?>
 
 
-</html>

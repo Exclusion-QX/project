@@ -113,7 +113,8 @@ require("functions.php");
 				$page = isset($_GET['page']) ? $_GET['page']: 1;
 				$limit = 6;
 				$offset = $limit * ($page - 1);
-				$products = get_product($limit, $offset);
+				$category = "Процессор";
+				$products = get_product_by_category($limit, $offset, $category);
 
 			?>
 
@@ -261,7 +262,6 @@ require("functions.php");
 
 
 <?php
-require ("footer.html");
+require ("footer.php");
 ?>
 
-</html>
