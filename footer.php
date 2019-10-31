@@ -36,7 +36,6 @@
 		</div>
 </footer>
 
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->
@@ -48,7 +47,7 @@
   	$(document).ready(function() {
   		$(".add-to-cart").click(function() {
   			var id = $(this).attr("data-id");
-  			$.post("/cart/addAjax/"+id, {}, function(data) {
+  			$.post("shop-page.php"+id, {}, function(data) {
   				$("#cart-count").html(data);
   			});
   			return false;

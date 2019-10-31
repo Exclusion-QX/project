@@ -42,6 +42,68 @@
 		
 	}
 
+	function get_product_by_ids($idsArray) {
+		
+		global $link;
+		$products = array();
+		$sql = "SELECT * FROM product WHERE id_product IN ($idsString)";
+
+		$result = mysqli_query($link, $sql);
+		$product = mysqli_fetch_assoc($result);
+
+		$i = 0;
+		while ($row = $product->fetch()) {
+			$products[$i]['id_product'] = $row['id_product'];
+			$products[$i]['product_name'] = $row['product_name'];
+			$products[$i]['product_image'] = $row['product_image'];
+			$products[$i]['product_price'] = $row['product_price'];
+			$i ++;
+		}
+		return $products;
+	}
+
+	function add_to_cart($product, $number) {
+		global $link;
+
+		$id_purchaser = $_COOKIE['id'];
+		$id_product = $product;
+		$product_number = $number;
+		$cart_date = $_COOKIE['id'];
+
+		$sql = "INSERT INTO cart (id_purchaser, id_product, product_number ) VALUES ('$id_purchaser', '$id_product', '$product_number') ";
+		$result = mysqli_query($link, $sql);
+		echo "qwerty";
+	}
 
 
+	function get_product_from_cart ($id_purchaser) {
 
+		global $link;
+		$sql = "SELECT cart.product_number, cart.id_cart, product.product_name, product.product_desc, product.product_price, product.id_product FROM cart, product WHERE cart.id_purchaser = '$id_purchaser' AND product.id_product = cart.id_product";
+		$result = mysqli_query($link, $sql);
+		$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+		return $products;
+	}
+
+	function delete_product ($id_cart) {
+
+		global $link;
+		$sql = "DELETE FROM cart WHERE id_cart = '$id_cart'";
+		$result = mysqli_query($link, $sql);
+	}
+
+	function delete_all_products ($id_purchaser) {
+
+		global $link;
+		$sql = "DELETE FROM cart WHERE id_purchaser = '$id_purchaser'";
+		$result = mysqli_query($link, $sql);
+	}
+
+	function get_number_products ($id_purchaser) {
+
+		global $link;
+		$sql = "SELECT * FROM cart WHERE id_purchaser = '$id_purchaser'";
+		$result = mysqli_query($link, $sql);
+		$number = mysqli_num_rows($result);
+		return $number;
+	}

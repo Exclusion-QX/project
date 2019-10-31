@@ -33,6 +33,8 @@ require ("header.php");
 				$_SESSION['email'] = $row[6];
 				$_SESSION['login'] = $row[2];
 
+				
+				//Генерация ключа для пользователя
 			} else {  
 				 $fsmsg = "Ошибка!"; }
 			}
@@ -55,10 +57,16 @@ require ("header.php");
 
 		<?php
 			if (isset($_SESSION['name'])) {
-				$login = $_SESSION['name'];
-				$_COOKIE['username'] = $login;
+
+
+				$name = $_SESSION['name'];
+				$_COOKIE['username'] = $name;
 				var_dump($_COOKIE['username']);
-				//echo "Hello " . $login . " ";
+
+
+
+
+								//echo "Hello " . $login . " ";
 				echo "<a href='private.php' class='btn btn-lg btn-primary'> Перейти в личный кабинет </a>";
 				echo "<a href='logout.php' class='btn btn-lg btn-primary'> Выйти </a>";
 			}

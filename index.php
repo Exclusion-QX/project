@@ -222,6 +222,7 @@ require("functions.php");
  				<?php endforeach; ?>
 
  					</div>
+
  		
  			</section>
 

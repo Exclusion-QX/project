@@ -1,6 +1,8 @@
 <?php 
 if(isset($_COOKIE['username']))
 	$username = $_COOKIE['username'];
+if(isset($_SESSION['number']))
+	$number = $_SESSION['number'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +21,8 @@ if(isset($_COOKIE['username']))
   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="css/style.css" rel="stylesheet">
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 </head>
 
 <body>
@@ -58,7 +62,7 @@ if(isset($_COOKIE['username']))
 						<li class="nav-item">
 							<a href="cart.php" class="nav-link waves-effect">
 								<span id="cart-count" class="badge red z-depth-1 mr-1"></span>
-								<i class="fa fa-shopping-cart"></i>
+								<i class="fa fa-shopping-cart"><?=$number?></i>
 								<span class="clearfix d-none d-sm-inline-block">Корзина</span>
 							</a>
 						</li>
