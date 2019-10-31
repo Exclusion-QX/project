@@ -34,13 +34,7 @@ $product = get_product_by_id($id_product);
  							</a>
  						</div> -->
  						
- 						<?php 
- 							$id = $product['id_product'];
-							if (isset($_POST['number']) && isset($_POST['send']) && ($_POST['number'] > 0) ){
-								$number = $_POST['number'];
-								add_to_cart($id, $number);
-							}
- 						?>
+ 						
 
 
  						<p class="lead">
@@ -52,17 +46,20 @@ $product = get_product_by_id($id_product);
  							</span>
  						</p>
  						<p class="lead font-weight-bold">Описание</p>
-
+						<div id="response"></div>
 						
-						<form class="form-signin" method="POST">
+						<form name="inCartForm">
  							<div class="d-flex justify-content-left">
 
- 							<input type="number" value="1" aria-label="Search" id="number" name="number" style="width: 100px;" class="form-control">
- 							<button type="submit" class="btn btn-lg btn-primary btn-md my-0 p" name="send" id="send" data-id="<?=$product['id_product']?>">
+ 							<input type="number" value="1" aria-label="Search" id="number" name="inCart__inp" style="width: 100px;" class="form-control">
+ 							<!-- <input type="text" name="inCart__inp" style="width: 100px;" class="form-control"> -->
+ 							<button type="submit" class="btn btn-lg btn-primary btn-md my-0 p" name="inCart__btn" value="<?=$product['id_product']?>">
  								Добавить в корзину <i class="fa fa-shopping-cart ml-1"></i>
  							</button>
  							</div>
  						</form>
+
+ 						<script src='js/ajax.js'></script>
  						
  					</div>
  				</div>

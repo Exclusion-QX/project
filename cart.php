@@ -37,17 +37,23 @@
 
  				<div class="content">
 
+ 				<script>
+ 					var number = 0;
+ 				</script>
+
  				<?php
 
  				$sum_price_all_products = 0;
- 				$number_products = 0;
+ 				
  				 foreach ($products as $product): ?>
 				
 				<?php 
 					$sum_price_product = ($product['product_price'] * $product['product_number']);
 					$sum_price_all_products += $sum_price_product;
-					$number_products += 1;
 				?>
+				<script>
+					var number = number + 1;
+				</script>
  					<div class="col-lg-12 col-md-3 mb-4">
  						<div class="card">
 						<div class="row">
@@ -117,7 +123,7 @@
 			<div class="card">
 				<div class="row">
 					<div class="col-lg-3 num-all-product">
-						<p>Количество товаров: <?=$number_products?></p>
+						<p>Количество товаров: <script>document.write(number)</script></p>
 					</div>
 					<div class="col-lg-2 offset-3 clear-cart">
 						<form method="POST">
