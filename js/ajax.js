@@ -1,5 +1,7 @@
 var servResponse = document.querySelector('#response');
 
+// Добавление товара в корзину
+
 document.forms.inCartForm.onsubmit = function(e){
 	e.preventDefault();
 
@@ -22,3 +24,4 @@ document.forms.inCartForm.onsubmit = function(e){
 
 	xhr.send('inCart__inp=' + productInput + '&' + 'inCart__btn=' + productBtn);
 };
+

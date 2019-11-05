@@ -72,14 +72,14 @@
 
 		$sql = "INSERT INTO cart (id_purchaser, id_product, product_number ) VALUES ('$id_purchaser', '$id_product', '$product_number') ";
 		$result = mysqli_query($link, $sql);
-		echo "qwerty";
+		echo "Добавлено";
 	}
 
 
 	function get_product_from_cart ($id_purchaser) {
 
 		global $link;
-		$sql = "SELECT cart.product_number, cart.id_cart, product.product_name, product.product_desc, product.product_price, product.id_product FROM cart, product WHERE cart.id_purchaser = '$id_purchaser' AND product.id_product = cart.id_product";
+		$sql = "SELECT cart.product_number, cart.id_cart, product.product_name, product.product_desc, product.product_price, product.id_product, product.product_image FROM cart, product WHERE cart.id_purchaser = '$id_purchaser' AND product.id_product = cart.id_product";
 		$result = mysqli_query($link, $sql);
 		$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		return $products;

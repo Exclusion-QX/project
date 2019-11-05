@@ -35,18 +35,12 @@
  			<div class="row wow fadeIn">
 
  				<div class="content">
- 				<div class="delete_all_products">
 
  				<script>
  					var number = 0;
  				</script>
 
- 				<?php
-
- 				$sum_price_all_products = 0;
- 				$i = 0;
-
- 				 foreach ($products as $product): ?>
+ 				
 				
 				<?php 
 					$sum_price_product = ($product['product_price'] * $product['product_number']);
@@ -59,32 +53,31 @@
  						<div class="card">
 						<div class="row">
  							<div class="col-lg-2 col-md-4 view overlay">
- 								<img class="card-img-top" src="<?=$product['product_image']?>" alt="Core-i9">
- 								<a href="shop-page.php?id_product=<?=$product['id_product']?>">
+ 								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
+ 								<a href="shop-page.php?id_product=1">
  									<div class="mask rgba-white-slight"></div>
  								</a>
  							</div>
 
 							<div class="col-lg-8 card-body cart-desc cart-text">
-								<a href="shop-page.php?id_product=<?=$product['id_product']?>" class="grey-text">
+								<a href="shop-page.php?id_product=1" class="grey-text">
 									<h5><?=$product['product_category'] ?></h5>
 								</a>
 								
 
 								<h5>
 									<strong>
-										<a href="shop-page.php?id_product=<?=$product['id_product']?>" class="dark-grey-text"><?=$product['product_name'] ?> <!-- <span class="badge-pill danger-color">NEW</span> --></a>
+										<a href="shop-page.php?id_product=<?=$product['id_product']?>" class="dark-grey-text">62 <!-- <span class="badge-pill danger-color">NEW</span> --></a>
 									</strong>
 								</h5>
 
 								<p>
-									<?=mb_substr($product['product_desc'], 0, 50, 'UTF-8').'...' ?>								
+									62626262						
 								</p>
 								
 								<div class="number-panel">
-									<p>Количество: <?=$product['product_number']?></p>
+									<p>Количество: 1</p>
 								</div>
-								
 								<div id="response"></div>
 
 								
@@ -92,18 +85,18 @@
 							</div>
 
 								<div class="col-lg-2 block-buy">
-									<div class="price" id="<?=$i?>">
+									<div class="price">
 										<h4 class="font-weight-bold blue-text">
-											<strong><?=$sum_price_product.'₽' ?></strong>
+											<strong>10000</strong>
 										</h4>
 										<form name="cartDelProdForm">
-											<button type="submit" class="button-delete-product" name="deleteProduct__btn" value="<?=$product['id_cart']?>">Удалить товар</button>
+											<button type="submit" class="button-delete-product" name="deleteProduct__btn" value="62">Удалить товар</button>
 										</form>
 
-										<!-- <script src="js/cart.js"></script> -->
+										
 											
 									</div>
-									<?php $i = $i + 1 ?>
+									
 									<div class="button-buy">
 										<button type="submit" class="btn btn-lg btn-primary btn-md my-0 p" name="buy" id="buy">Купить</button>
 									</div>
@@ -111,9 +104,66 @@
 							</div>
  						</div>
  					</div>
+								
 
- 				<?php endforeach; ?>
- 				</div>
+
+
+								<div class="col-lg-12 col-md-3 mb-4" id="productBlock2">
+ 						<div class="card">
+						<div class="row">
+ 							<div class="col-lg-2 col-md-4 view overlay">
+ 								<img class="card-img-top" src="/img/proc.jpg" alt="Core-i9">
+ 								<a href="shop-page.php?id_product=4">
+ 									<div class="mask rgba-white-slight"></div>
+ 								</a>
+ 							</div>
+
+							<div class="col-lg-8 card-body cart-desc cart-text">
+								<a href="shop-page.php?id_product=4" class="grey-text">
+									<h5><?=$product['product_category'] ?></h5>
+								</a>
+								
+
+								<h5>
+									<strong>
+										<a href="shop-page.php?id_product=<?=$product['id_product']?>" class="dark-grey-text">63 <!-- <span class="badge-pill danger-color">NEW</span> --></a>
+									</strong>
+								</h5>
+
+								<p>
+									636363						
+								</p>
+								
+								<div class="number-panel">
+									<p>Количество: 1</p>
+								</div>
+								<div id="response"></div>
+
+								
+
+							</div>
+
+								<div class="col-lg-2 block-buy">
+									<div class="price">
+										<h4 class="font-weight-bold blue-text">
+											<strong>63000</strong>
+										</h4>
+										<form name="cartDelProdFormx">
+											<button type="submit" class="button-delete-product" name="deleteProduct__btn" value="63">Удалить товар</button>
+										</form>
+
+										
+											
+									</div>
+									
+									<div class="button-buy">
+										<button type="submit" class="btn btn-lg btn-primary btn-md my-0 p" name="buy" id="buy">Купить</button>
+									</div>
+								</div>
+							</div>
+ 						</div>
+ 					</div>
+ 					<script src="js/cart.js"></script>
 				</div>
 				
 				
@@ -130,13 +180,11 @@
 				<div class="row">
 					<div class="col-lg-3 num-all-product">
 						<p>Количество товаров: <script>document.write(number)</script></p>
-		
 					</div>
 					<div class="col-lg-2 offset-3 clear-cart">
-						<form name="cartDelAllProdForm">
-							<button type="submit" class="button-delete-all-products" name="deleteAllProduct__btn" id="delete-all" value="<?=$product['id_purchaser']?>">Очистить корзину </button>
+						<form method="POST">
+							<button type="submit" class="button-delete-all-products" name="delete-all" id="delete-all">Очистить корзину </button>
 						</form>
-
 					</div>
 					<div class="col-lg-2 payment-all">
 						<p>Итого: <?=$sum_price_all_products?> ₽</p>
@@ -154,7 +202,7 @@
 
 
 	</div>	
-	<script src="js/cart.js"></script>
+
 </main>
 
 

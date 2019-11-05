@@ -100,6 +100,7 @@ header {
 .cart-desc {
 	padding: 0.4rem;
 	max-height: 250px;
+	
 }
 
 .cart-text {
@@ -164,7 +165,7 @@ header {
 
 
 
-.dwn-menu ul,
+/* .dwn-menu ul,
 .dws-menu ol{
 	list-style: none;
 }
@@ -186,9 +187,9 @@ header {
 	border-right: 1px solid #c7c8ca;
 	min-width: 170px;
 	float: left;
-}
+} */
 
-.dws-menu > ul li > a i.fa{
+/* .dws-menu > ul li > a i.fa{
 	position: absolute;;
 	top: 15px;
 	left: 12px;
@@ -197,23 +198,23 @@ header {
 
 .dws-menu > ul li:first-child{
 	border-left: 1px solid #c7c8ca;
-}
+} */
 
-.dws-menu li a:hover{
+/* .dws-menu li a:hover{
 	background: #58647f;
 	box-shadow: 1px 5px 10px -5px black;
 	transition: all 0.3s ease;
-}
+} */
 
-.dws-menu li ul{
+/* .dws-menu li ul{
 	position: absolute;
 	z-index: 10000;
-	display: none;
+	
 	right: 0px;
 
-}
+} */
 
-.dws-menu li > ul li{
+/* .dws-menu li > ul li{
 	border: 1px solid #c7c8ca;
 	width: 170px;
 }
@@ -228,9 +229,9 @@ header {
 	text-transform: none;
 	background: #e4e4e5;
 	text-align: center;
-}
+} */
 
-.dws-menu li > ul li:hover a{
+/* .dws-menu li > ul li:hover a{
 	color: #fff;
 }
 
@@ -238,5 +239,76 @@ header {
 .dws-menu li:hover ul,
 .dws-menu li:hover ul li ul{
 	display: block;
+} */
+
+
+
+
+#nextNav{ 
+  text-align: center;
+}
+#top_menu{
+  display: inline-block;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+#top_menu > li{
+  display: inline-block;  
+  position: relative;
 }
 
+#top_menu li ul {
+	z-index: 10000;
+}
+
+#top_menu > li > a{
+  display: inline-block;
+  padding: 10px 20px; 
+  color: inherit;
+  text-decoration: none; 
+  transition: background-color 0.25s, color 0.15s;
+  text-transform: uppercase;
+  color: #fff;
+}
+#top_menu > li > a:hover{
+  color: white;
+  background: #58647f; 
+}
+#top_menu > li:hover > ul a{
+  opacity: 1;
+}
+#top_menu > li:hover > ul li{
+  height: 40px;
+  opacity: 1;
+}
+.inner_menu{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  list-style: none;
+  padding-left: 0;
+  text-align: left;
+  white-space: nowrap;
+  background-color: #ededed;
+}
+.inner_menu > li{
+  height: 0;
+  opacity: 0;
+  transition: height 0.3s, opacity 0.4s;
+}
+.inner_menu > li > a{
+  width: 100%;
+  display: inline-block;
+  padding: 10px 20px; 
+  color: inherit;
+  text-decoration: none; 
+  height: inherit;
+  overflow: hidden;
+  opacity: 0;
+  transition: height 0.4s, opacity 0.5s;
+}
+.inner_menu > li > a:hover{
+  color: white;
+  background-color: #a3c2e3; 
+}

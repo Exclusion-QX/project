@@ -1,8 +1,8 @@
 
 <?php
-require("header.php");
-require("connect.php");
-require("functions.php");
+require("../header.php");
+require("../connect.php");
+require("../functions.php");
 ?>
 
  	
@@ -113,7 +113,7 @@ require("functions.php");
 				$page = isset($_GET['page']) ? $_GET['page']: 1;
 				$limit = 6;
 				$offset = $limit * ($page - 1);
-				$category = "Процессор";
+				$category = "Видеокарта";
 				$products = get_product_by_category($limit, $offset, $category);
 
 			?>
@@ -136,8 +136,8 @@ require("functions.php");
 							<a >Комплектующие</a>
 							<ul class="inner_menu">
 							
-								<li><a href="products/processors.php">Процессоры</a></li>
-								<li><a href="products/graphicscard.php">Видеокарта</a></li>
+								<li><a href="/index.php">Процессоры</a></li>
+								<li><a href="#">Видеокарта</a></li>
 								<li><a href="#">Материнская плата</a></li>
 								<li><a href="#">Оперативная память</a></li>
 								<li><a href="#">Охлаждение</a></li>
@@ -174,9 +174,88 @@ require("functions.php");
 
 				</div>
  			</nav>
-			
-			<h1>Lorem ipsum dolor.</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quia veritatis dolorem quis, rerum dignissimos deserunt veniam voluptatum aliquam animi illum odio esse doloribus sint, mollitia laborum quo commodi at, similique in sunt magni quibusdam error aperiam? Ducimus optio, velit quo cumque ab. Soluta culpa provident deleniti voluptatum, earum iste sed, vitae tenetur et commodi sunt saepe sint, voluptatibus amet, corrupti eaque magni? Enim ut inventore, blanditiis necessitatibus recusandae animi voluptatem fuga suscipit quibusdam dolorum. Voluptas nesciunt dolores, doloremque ab laudantium repellat rerum ipsa a nihil! Obcaecati aperiam cupiditate ab quibusdam ipsa error sapiente praesentium magnam. Tempore ea alias, inventore illo totam optio nemo in nesciunt cum debitis odit a, quae sit magni dolorum voluptate dicta sapiente molestias delectus accusamus, nam ex tempora ab. Sapiente, tenetur. Nemo eveniet incidunt animi veritatis, voluptates odio blanditiis omnis enim quam, excepturi distinctio. Itaque velit, cumque repudiandae alias obcaecati corporis nobis, voluptatum suscipit odio, id expedita. Beatae, quod voluptas nam culpa ab quas explicabo, atque minus qui, non sapiente. Iure autem, dicta, voluptates ad aspernatur molestias aut natus ipsam, tempora impedit adipisci eos debitis repudiandae? Quae suscipit placeat, ex iusto assumenda omnis nemo commodi distinctio velit, accusamus ducimus, ipsum similique. Tempora, inventore quasi minima tempore illo a vero. Ex rem fugit illo dicta magni expedita ducimus consequatur eaque ipsa adipisci, animi eius dolorem accusamus repellat repellendus ipsam quod praesentium perspiciatis dolor quam, sunt. Nobis voluptate quidem blanditiis culpa quam veniam fuga necessitatibus doloremque laborum, iusto magni! Et quidem suscipit, aut eos nobis, deleniti dolorem recusandae ad error deserunt libero sed placeat quis autem maiores optio fuga aliquid, eaque amet est animi! Et perferendis suscipit eos rem laboriosam aspernatur iste quod consequatur ipsum quidem. Possimus architecto in iste doloribus sit asperiores, nemo suscipit numquam quas repellat nam at earum voluptatum nobis, minus, quo? Culpa, fuga.</p>
+
+ 			<section class="text-center mb-4">
+ 				<div class="row wow fadeIn">
+ 				
+
+ 				<?php
+ 				 foreach ($products as $product): ?>
+
+ 					<div class="col-lg-3 col-md-6 mb-4">
+ 						<div class="card">
+
+ 							<div class="view overlay">
+ 								<img class="card-img-top" src="<?=$product['product_image']?>" alt="Core-i9">
+ 								<a href="/shop-page.php?id_product=<?=$product['id_product']?>">
+ 									<div class="mask rgba-white-slight"></div>
+ 								</a>
+ 							</div>
+
+							<div class="card-body text-center card-desc">
+								<a href="/shop-page.php?id_product=<?=$product['id_product']?>" class="grey-text">
+									<h5><?=$product['product_category'] ?></h5>
+								</a>
+								
+
+								<h5>
+									<strong>
+										<a href="/shop-page.php?id_product=<?=$product['id_product']?>" class="dark-grey-text"><?=$product['product_name'] ?> <!-- <span class="badge-pill danger-color">NEW</span> --></a>
+									</strong>
+								</h5>
+
+								<p>
+									<?=mb_substr($product['product_desc'], 0, 50, 'UTF-8').'...' ?>								
+								</p>
+
+								<hr>
+
+								<h4 class="font-weight-bold blue-text">
+									<strong><?=$product['product_price'].'₽' ?></strong>
+								</h4>
+
+							</div>
+
+ 						</div>
+ 					</div>
+
+ 				<?php endforeach; ?>
+
+ 					</div>
+
+ 		
+ 			</section>
+
+
+ 			<nav class="d-flex justify-content-center wow fadeIn">
+ 				<ul class="pagination pg-blue">
+ 					<li class="page-item">
+ 						<a href="index.php?page=<?= $page - 1?>" class="page-link" aria-label="Previous">
+ 							<span aria-hidden="true">&laquo;</span>
+ 						</a>
+ 					</li>
+ 					<li class="page-item">
+ 						<a href="graphicscard.php?page=1" class="page-link" aria-label="Previous">
+ 							<span aria-hidden="true">1</span>
+ 						</a>
+ 					</li>
+ 					<li class="page-item">
+ 						<a href="graphicscard.php?page=2" class="page-link" aria-label="Previous">
+ 							<span aria-hidden="true">2</span>
+ 						</a>
+ 					</li>
+ 					<li class="page-item">
+ 						<a href="graphicscard.php?page=3" class="page-link" aria-label="Previous">
+ 							<span aria-hidden="true">3</span>
+ 						</a>
+ 					</li>
+ 					<li class="page-item">
+ 						<a href="graphicscard.php?page=<?= $page + 1?>" class="page-link" aria-label="Next">
+ 							<span aria-hidden="true">&raquo;</span>
+ 						</a>
+ 					</li>
+ 				</ul>
+ 			</nav>
  		</div>
  		<div class="mini-cart"></div>
  	</main>
@@ -184,6 +263,5 @@ require("functions.php");
 
 
 <?php
-require ("footer.php");
+require ("../footer.php");
 ?>
-

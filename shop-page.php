@@ -18,7 +18,7 @@ $product = get_product_by_id($id_product);
  		<div class="container dark-grey-text mt-5">
  			<div class="row wow fadeIn">
  				<div class="col-md-6 mb-4" style="max-width: 400px;">
- 					<img src="https://shop.by/images/intel_core_i9_9900k_1.jpg" alt="macbook" class="img-fluid">
+ 					<img src="<?=$product['product_image']?>" alt="macbook" class="img-fluid">
  				</div>
  				<div class="col-md-5 mb-14">
  					<div class="p-4">
