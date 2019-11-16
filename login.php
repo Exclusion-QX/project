@@ -1,6 +1,11 @@
 <?php
 session_start();
 //setcookie('username', 0, time() - 2592000, '/');
+
+if(isset($_SESSION['login']) ){
+	header("Location: /index.php");
+}
+
 ?>
 
 
@@ -28,12 +33,16 @@ require ("header.php");
 			$count = mysqli_num_rows($result);
 
 			if ($count == 1) {
-				$_SESSION['name'] = $row[7];
 				$_SESSION['id'] = $row[0];
+				$_SESSION['login'] = $row[2];				
+				$_SESSION['group'] = $row[4];
+				$_SESSION['phone'] = $row[5];
 				$_SESSION['email'] = $row[6];
-				$_SESSION['login'] = $row[2];
-
-				
+				$_SESSION['name'] = $row[7];
+				$_SESSION['firstname'] = $row[8];
+				?>
+				<script>window.location.replace("http://project.loc/index.php");</script>
+				<?
 				//Генерация ключа для пользователя
 			} else {  
 				 $fsmsg = "Ошибка!"; }
@@ -55,22 +64,7 @@ require ("header.php");
 			</form>
 		</div>
 
-		<?php
-			if (isset($_SESSION['name'])) {
-
-
-				$name = $_SESSION['name'];
-				$_COOKIE['username'] = $name;
-				var_dump($_COOKIE['username']);
-
-
-
-
-								//echo "Hello " . $login . " ";
-				echo "<a href='private.php' class='btn btn-lg btn-primary'> Перейти в личный кабинет </a>";
-				echo "<a href='logout.php' class='btn btn-lg btn-primary'> Выйти </a>";
-			}
-		?>
+		
 
 	</main>
 

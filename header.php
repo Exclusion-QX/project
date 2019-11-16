@@ -1,8 +1,8 @@
 <?php 
+include('start.php');
 if(isset($_COOKIE['username']))
 	$username = $_COOKIE['username'];
-if(isset($_SESSION['number']))
-	$number = $_SESSION['number'];
+	$number = $_COOKIE['number'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,8 +25,7 @@ if(isset($_SESSION['number']))
   <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
 </head>
 
-<body>
-
+<header>
 	<!-- Шапка сайта -->
 		<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
 			<div class="container">
@@ -61,8 +60,8 @@ if(isset($_SESSION['number']))
 					<ul class="navbar-nav nav-flex-icons">
 						<li class="nav-item">
 							<a href="/cart.php" class="nav-link waves-effect">
-								<span id="cart-count" class="badge red z-depth-1 mr-1"></span>
-								<i class="fa fa-shopping-cart"><?=$number?></i>
+								<span id="cart-count" class="badge red z-depth-1 mr-1"><?=$number?></span>
+								<i class="fa fa-shopping-cart"></i>
 								<span class="clearfix d-none d-sm-inline-block">Корзина</span>
 							</a>
 						</li>
@@ -95,3 +94,4 @@ if(isset($_SESSION['number']))
 				</div>
 			</div>
 		</nav>
+</header>

@@ -1,4 +1,3 @@
-
 <?php
 require("../header.php");
 require("../connect.php");
@@ -136,7 +135,7 @@ require("../functions.php");
 							<a >Комплектующие</a>
 							<ul class="inner_menu">
 							
-								<li><a href="/index.php">Процессоры</a></li>
+								<li><a href="/products/processors.php">Процессоры</a></li>
 								<li><a href="#">Видеокарта</a></li>
 								<li><a href="#">Материнская плата</a></li>
 								<li><a href="#">Оперативная память</a></li>
@@ -167,9 +166,8 @@ require("../functions.php");
 
 
 					<form class="form-inline">
-						<div class="md-form my-0">
-							<input type="text" class="form-control mr-sm-2" placeholder="Search" aria-label="Search">
-						</div>
+						<input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
+						<button type="submit">Поиск</button>
 					</form>
 
 				</div>
@@ -187,25 +185,23 @@ require("../functions.php");
 
  							<div class="view overlay">
  								<img class="card-img-top" src="<?=$product['product_image']?>" alt="Core-i9">
- 								<a href="/shop-page.php?id_product=<?=$product['id_product']?>">
+ 								<a href="/shop-page.php?id_product=<?=$product['id_product']?>&product_category=<?=$product['product_category']?>">
  									<div class="mask rgba-white-slight"></div>
  								</a>
  							</div>
 
 							<div class="card-body text-center card-desc">
-								<a href="/shop-page.php?id_product=<?=$product['id_product']?>" class="grey-text">
-									<h5><?=$product['product_category'] ?></h5>
-								</a>
+									<h5 class="grey-text"><?=$product['product_category'] ?></h5>
 								
 
 								<h5>
 									<strong>
-										<a href="/shop-page.php?id_product=<?=$product['id_product']?>" class="dark-grey-text"><?=$product['product_name'] ?> <!-- <span class="badge-pill danger-color">NEW</span> --></a>
+										<a href="/shop-page.php?id_product=<?=$product['id_product']?>&product_category=<?=$product['product_category']?>" class="dark-grey-text"><?=$product['product_name'] ?> <!-- <span class="badge-pill danger-color">NEW</span> --></a>
 									</strong>
 								</h5>
 
 								<p>
-									<?=mb_substr($product['product_desc'], 0, 50, 'UTF-8').'...' ?>								
+									<?=mb_substr($product['characteristics'], 0, 50, 'UTF-8').'...' ?>								
 								</p>
 
 								<hr>

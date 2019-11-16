@@ -1,10 +1,31 @@
+<?php 
+session_start();
 
-<?php
-require("header.php");
+
 require("connect.php");
 require("functions.php");
-?>
 
+$username = $_SESSION['name'];
+$id = $_SESSION['id'];
+
+$_SESSION['number'] = get_number_products($id);
+$number = $_SESSION['number'];
+/*$cook_val = array('cook_id' => $id, 'cook_name' => $username, 'cook_numbProducts' => $numbProducts);
+
+setcookie('purchaser', serialize($cook_val), time() + 60 * 60 * 24 * 7, '/');
+*/
+
+setcookie('username', $username, time() + 60 * 60 * 24 * 7, '/');
+setcookie('id', $id, time() + 60 * 60 * 24 * 7, '/');
+setcookie('number', $number, time() + 60 * 60 * 24 * 7, '/');
+//setcookie('number', $numbProducts, time() + 60 * 60 * 24 * 7, '/');
+
+
+?>
+<?php require("header.php");?>
+
+
+<body>
  	
  	<!-- КАРУСЕЛь -->
  	<div id="carousel-ex" class="carousel slide carousel-fade pt-4" data-ride="carousel">
@@ -167,20 +188,58 @@ require("functions.php");
 
 
 					<form class="form-inline">
-						<div class="md-form my-0">
-							<input type="text" class="form-control mr-sm-2" placeholder="Search" aria-label="Search">
-						</div>
+						<input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
+						<button type="submit">Поиск</button>
 					</form>
 
 				</div>
  			</nav>
-			
-			<h1>Lorem ipsum dolor.</h1>
+
+			<div class="banners">
+				<div class="banners-high">
+					<h1>Новинка</h1>
+					<div class="row wow fadeIn row-correction">
+						<div class="col-md-6 banner-image banner-high">
+							<div href="#" class="banner-image banner-high" style="background: url(https://cdn.pixabay.com/photo/2019/10/29/17/56/sky-4587691_1280.jpg) no-repeat center top; background-size: cover;">
+								<a href="#">High text 1</a>
+							</div>
+						</div>
+						<div class="col-md-6 banner-image banner-high">
+							<div class="banner-image banner-high" style="background: url(https://cdn.pixabay.com/photo/2019/10/25/12/29/landscape-4576897_1280.jpg) no-repeat center top; background-size: cover;">
+								<a href="#">High text 2</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="banners-low">
+					<h2>Скидки</h2>
+					<div class="row wow fadeIn row-correction">
+						<div class="col-md-4 banner-image">
+							<div class="banner-image" style="background: url(https://cdn.pixabay.com/photo/2019/11/03/17/38/landscape-4599237_1280.jpg) no-repeat center top; background-size: cover;">
+								<a href="#">Text1</a>
+							</div>
+						</div>
+					<div class="col-md-4 banner-image row-correction">
+						<div class="banner-image" style="background: url(https://cdn.pixabay.com/photo/2019/10/25/12/29/landscape-4576896_1280.jpg) no-repeat center top; background-size: cover;">
+							<a href="#">Text2</a>
+						</div>
+					</div>
+					<div class="col-md-4 banner-image row-correction">
+						<div class="banner-image" style="background: url(https://cdn.pixabay.com/photo/2019/11/06/12/54/afghanistan-4606064_1280.jpg) no-repeat center top; background-size: cover;">
+							<a href="#">Text3</a>
+						</div>
+					</div>
+				</div>
+				
+				</div>
+			</div>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quia veritatis dolorem quis, rerum dignissimos deserunt veniam voluptatum aliquam animi illum odio esse doloribus sint, mollitia laborum quo commodi at, similique in sunt magni quibusdam error aperiam? Ducimus optio, velit quo cumque ab. Soluta culpa provident deleniti voluptatum, earum iste sed, vitae tenetur et commodi sunt saepe sint, voluptatibus amet, corrupti eaque magni? Enim ut inventore, blanditiis necessitatibus recusandae animi voluptatem fuga suscipit quibusdam dolorum. Voluptas nesciunt dolores, doloremque ab laudantium repellat rerum ipsa a nihil! Obcaecati aperiam cupiditate ab quibusdam ipsa error sapiente praesentium magnam. Tempore ea alias, inventore illo totam optio nemo in nesciunt cum debitis odit a, quae sit magni dolorum voluptate dicta sapiente molestias delectus accusamus, nam ex tempora ab. Sapiente, tenetur. Nemo eveniet incidunt animi veritatis, voluptates odio blanditiis omnis enim quam, excepturi distinctio. Itaque velit, cumque repudiandae alias obcaecati corporis nobis, voluptatum suscipit odio, id expedita. Beatae, quod voluptas nam culpa ab quas explicabo, atque minus qui, non sapiente. Iure autem, dicta, voluptates ad aspernatur molestias aut natus ipsam, tempora impedit adipisci eos debitis repudiandae? Quae suscipit placeat, ex iusto assumenda omnis nemo commodi distinctio velit, accusamus ducimus, ipsum similique. Tempora, inventore quasi minima tempore illo a vero. Ex rem fugit illo dicta magni expedita ducimus consequatur eaque ipsa adipisci, animi eius dolorem accusamus repellat repellendus ipsam quod praesentium perspiciatis dolor quam, sunt. Nobis voluptate quidem blanditiis culpa quam veniam fuga necessitatibus doloremque laborum, iusto magni! Et quidem suscipit, aut eos nobis, deleniti dolorem recusandae ad error deserunt libero sed placeat quis autem maiores optio fuga aliquid, eaque amet est animi! Et perferendis suscipit eos rem laboriosam aspernatur iste quod consequatur ipsum quidem. Possimus architecto in iste doloribus sit asperiores, nemo suscipit numquam quas repellat nam at earum voluptatum nobis, minus, quo? Culpa, fuga.</p>
  		</div>
  		<div class="mini-cart"></div>
  	</main>
-
 
 
 <?php

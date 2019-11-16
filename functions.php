@@ -107,3 +107,32 @@
 		$number = mysqli_num_rows($result);
 		return $number;
 	}
+
+	function change_purchaser_data ($id, $name, $firstname, $login, $phone, $email) {
+
+		global $link;
+		$sql = "UPDATE purchaser SET purchaser_name = '$name', purchaser_firstname = '$firstname', purchaser_login = '$login', purchaser_phone = '$phone', purchaser_email = '$email' WHERE id_purchaser = '$id'";
+		$result = mysqli_query($link, $sql);
+		return $result;
+	}
+
+	function check_password ($id, $password) {
+
+		global $link;
+		$sql = "SELECT purchaser_pass FROM purchaser WHERE id_purchaser = '$id' and purchaser_pass = 'passwordNew'";
+		$result = mysqli_query($link, $sql);
+		if ($result) {
+			$check = true;
+		} else {
+			$check = false;
+		}
+		return $check;
+	}
+
+	function change_purchaser_password ($id, $passwordNew) {
+
+		global $link;
+		$sql = "UPDATE purchaser SET purchaser_pass = '$passwordNew' WHERE id_purchaser = '$id'";
+		$result = mysqli_query($link, $sql);
+		return $result;
+	}

@@ -20,6 +20,7 @@ require("connect.php");
 		echo "string";
 		$idCart = $_POST['idCart__btn'];
 		delete_product($idCart);
+		$_SESSION['number'] = $_SESSION['number'] - 1;
 	}
 
 // Очищение корзины
@@ -27,4 +28,5 @@ require("connect.php");
 	if (isset($_POST['deleteAllProduct__btn'])) {
 		$id = $_POST['deleteAllProduct__btn'];
 		delete_all_products($id);
+		$_SESSION['number'] = 0;
 	}

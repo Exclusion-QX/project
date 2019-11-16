@@ -35,7 +35,7 @@
  			<div class="row wow fadeIn">
 
  				<div class="content">
- 				<div class="delete_all_products">
+ 				<div class="delete_all_products" id="productsAllBlock">
 
  				<script>
  					var number = 0;
@@ -45,6 +45,7 @@
 
  				$sum_price_all_products = 0;
  				$i = 0;
+ 				$id_card = 0;
 
  				 foreach ($products as $product): ?>
 				
@@ -56,7 +57,7 @@
 					var number = number + 1;
 				</script>
  					<div class="col-lg-12 col-md-3 mb-4" id="productBlock">
- 						<div class="card">
+ 						<div class="card" id="<?=$product['id_cart']?>">
 						<div class="row">
  							<div class="col-lg-2 col-md-4 view overlay">
  								<img class="card-img-top" src="<?=$product['product_image']?>" alt="Core-i9">
@@ -97,7 +98,8 @@
 											<strong><?=$sum_price_product.'₽' ?></strong>
 										</h4>
 										<form name="cartDelProdForm">
-											<button type="submit" class="button-delete-product" name="deleteProduct__btn" value="<?=$product['id_cart']?>">Удалить товар</button>
+											<input type="hidden" name="deleteProduct__inp" value="<?=$product['id_cart']?>">
+											<button type="submit" class="button-delete-product" value="remove" name="deleteProduct__btn" onclick="test(<?=$product['id_cart']?>);">Удалить товар</button>
 										</form>
 
 										<!-- <script src="js/cart.js"></script> -->
@@ -111,8 +113,9 @@
 							</div>
  						</div>
  					</div>
-
- 				<?php endforeach; ?>
+ 				<?php 
+ 					$id_card = $id_card + 1;
+ 					endforeach; ?>
  				</div>
 				</div>
 				
@@ -134,8 +137,9 @@
 					</div>
 					<div class="col-lg-2 offset-3 clear-cart">
 						<form name="cartDelAllProdForm">
-							<button type="submit" class="button-delete-all-products" name="deleteAllProduct__btn" id="delete-all" value="<?=$product['id_purchaser']?>">Очистить корзину </button>
+							<button type="submit" class="button-delete-all-products" name="deleteAllProduct__btn" id="delete-all" value="<?=$id_purchaser?>">Очистить корзину </button>
 						</form>
+
 
 					</div>
 					<div class="col-lg-2 payment-all">
