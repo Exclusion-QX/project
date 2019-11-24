@@ -1,0 +1,2 @@
+<span>vlad</span>
+2018, LGA 2066, Skylake-X, 18, 36 шт, 576 КБ, 18 МБ, 24.75 Мб, 3100 МГц, 4400 МГц , 31, DDR4, 128 ГБ, 4, 1600 МГц, 2666 МГц, 165 Вт, 85 °C, нет, нет, DMI 3.0, 8 GT/s, EM64T, есть, есть, Turbo Boost 2.0, Enhanced SpeedStep, AVX-512 AVX2 SSE4.2 SSE4.1

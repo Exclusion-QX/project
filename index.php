@@ -10,6 +10,7 @@ $id = $_SESSION['id'];
 
 $_SESSION['number'] = get_number_products($id);
 $number = $_SESSION['number'];
+$login = $_SESSION['login'];
 /*$cook_val = array('cook_id' => $id, 'cook_name' => $username, 'cook_numbProducts' => $numbProducts);
 
 setcookie('purchaser', serialize($cook_val), time() + 60 * 60 * 24 * 7, '/');
@@ -18,8 +19,10 @@ setcookie('purchaser', serialize($cook_val), time() + 60 * 60 * 24 * 7, '/');
 setcookie('username', $username, time() + 60 * 60 * 24 * 7, '/');
 setcookie('id', $id, time() + 60 * 60 * 24 * 7, '/');
 setcookie('number', $number, time() + 60 * 60 * 24 * 7, '/');
+setcookie('login', $login, time() + 60 * 60 * 24 * 7, '/');
 //setcookie('number', $numbProducts, time() + 60 * 60 * 24 * 7, '/');
-
+$newproducts = get_new_products();
+$discounts = get_discounts_products();
 
 ?>
 <?php require("header.php");?>
@@ -30,7 +33,7 @@ setcookie('number', $number, time() + 60 * 60 * 24 * 7, '/');
  	<!-- КАРУСЕЛь -->
  	<div id="carousel-ex" class="carousel slide carousel-fade pt-4" data-ride="carousel">
  		<ol class="carousel-indicators">
- 			<li class="active" data-target="#carousel-ex" data-slide-to="0"></li>
+ 			<li data-target="#carousel-ex" data-slide-to="0" class="active"></li>
  			<li data-target="#carousel-ex" data-slide-to="1"></li>
  			<li data-target="#carousel-ex" data-slide-to="2"></li>
  		</ol>
@@ -38,7 +41,7 @@ setcookie('number', $number, time() + 60 * 60 * 24 * 7, '/');
 
  			<!-- 1-Й СЛАЙД -->
  			<div class="carousel-item active">
- 				<div class="view" style="background-image: url('https://images.pexels.com/photos/163125/board-printed-circuit-board-computer-electronics-163125.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+ 				<div class="view" style="background-image: url('img/carousel/1.jpg');
  				background-repeat: no-repeat; background-size: cover;">
  					<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
  						<div class="text-center white-text mx-5 wow fadeIn">
@@ -65,7 +68,7 @@ setcookie('number', $number, time() + 60 * 60 * 24 * 7, '/');
 
 			<!-- 2-Й СЛАЙД -->
  			<div class="carousel-item">
- 				<div class="view" style="background-image: url('https://images.pexels.com/photos/2582932/pexels-photo-2582932.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+ 				<div class="view" style="background-image: url('img/carousel/2.jpg');
  				background-repeat: no-repeat; background-size: cover;">
  					<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
  						<div class="text-center white-text mx-5 wow fadeIn">
@@ -92,7 +95,7 @@ setcookie('number', $number, time() + 60 * 60 * 24 * 7, '/');
 
 			<!-- 3-Й СЛАЙД -->
  			<div class="carousel-item">
- 				<div class="view" style="background-image: url('https://images.pexels.com/photos/2588757/pexels-photo-2588757.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');
+ 				<div class="view" style="background-image: url('img/carousel/3.jpg');
  				background-repeat: no-repeat; background-size: cover;">
  					<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
  						<div class="text-center white-text mx-5 wow fadeIn">
@@ -129,15 +132,6 @@ setcookie('number', $number, time() + 60 * 60 * 24 * 7, '/');
 
  
  		<div class="container">
-
-			<?php 
-				$page = isset($_GET['page']) ? $_GET['page']: 1;
-				$limit = 6;
-				$offset = $limit * ($page - 1);
-				$category = "Процессор";
-				$products = get_product_by_category($limit, $offset, $category);
-
-			?>
 
 			<!-- MENU  -->
 
@@ -199,16 +193,16 @@ setcookie('number', $number, time() + 60 * 60 * 24 * 7, '/');
 				<div class="banners-high">
 					<h1>Новинка</h1>
 					<div class="row wow fadeIn row-correction">
+					<? foreach ($newproducts as $newproduct):
+						$desc = $newproduct['product_image'];
+						$image = explode(", ", $desc);
+					?>
 						<div class="col-md-6 banner-image banner-high">
-							<div href="#" class="banner-image banner-high" style="background: url(https://cdn.pixabay.com/photo/2019/10/29/17/56/sky-4587691_1280.jpg) no-repeat center top; background-size: cover;">
-								<a href="#">High text 1</a>
+							<div href="#" class="banner-image banner-high" style="background: url(<?=$image[1]?>) no-repeat center top; background-size: cover;">
+								<a href="shop-page.php?id_product=<?=$newproduct['id_product']?>&product_category=<?=$newproduct['product_category']?>"><?=$newproduct['product_name']?></a>
 							</div>
 						</div>
-						<div class="col-md-6 banner-image banner-high">
-							<div class="banner-image banner-high" style="background: url(https://cdn.pixabay.com/photo/2019/10/25/12/29/landscape-4576897_1280.jpg) no-repeat center top; background-size: cover;">
-								<a href="#">High text 2</a>
-							</div>
-						</div>
+					<? endforeach; ?>
 					</div>
 				</div>
 
@@ -217,30 +211,30 @@ setcookie('number', $number, time() + 60 * 60 * 24 * 7, '/');
 				<div class="banners-low">
 					<h2>Скидки</h2>
 					<div class="row wow fadeIn row-correction">
+					<? foreach ($discounts as $discount):
+						$desc = $discount['product_image'];
+						$image = explode(", ", $desc);
+					 ?>
 						<div class="col-md-4 banner-image">
-							<div class="banner-image" style="background: url(https://cdn.pixabay.com/photo/2019/11/03/17/38/landscape-4599237_1280.jpg) no-repeat center top; background-size: cover;">
-								<a href="#">Text1</a>
+							<div class="banner-image" style="background: url(<?=$image[0]?>) no-repeat center; background-size: cover;">
+								<a href="shop-page.php?id_product=<?=$discount['id_product']?>&product_category=<?=$discount['product_category']?>"><?=$discount['product_name']?></a>
 							</div>
 						</div>
-					<div class="col-md-4 banner-image row-correction">
-						<div class="banner-image" style="background: url(https://cdn.pixabay.com/photo/2019/10/25/12/29/landscape-4576896_1280.jpg) no-repeat center top; background-size: cover;">
-							<a href="#">Text2</a>
-						</div>
+					<? endforeach; ?>
 					</div>
-					<div class="col-md-4 banner-image row-correction">
-						<div class="banner-image" style="background: url(https://cdn.pixabay.com/photo/2019/11/06/12/54/afghanistan-4606064_1280.jpg) no-repeat center top; background-size: cover;">
-							<a href="#">Text3</a>
-						</div>
-					</div>
-				</div>
 				
 				</div>
 			</div>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quia veritatis dolorem quis, rerum dignissimos deserunt veniam voluptatum aliquam animi illum odio esse doloribus sint, mollitia laborum quo commodi at, similique in sunt magni quibusdam error aperiam? Ducimus optio, velit quo cumque ab. Soluta culpa provident deleniti voluptatum, earum iste sed, vitae tenetur et commodi sunt saepe sint, voluptatibus amet, corrupti eaque magni? Enim ut inventore, blanditiis necessitatibus recusandae animi voluptatem fuga suscipit quibusdam dolorum. Voluptas nesciunt dolores, doloremque ab laudantium repellat rerum ipsa a nihil! Obcaecati aperiam cupiditate ab quibusdam ipsa error sapiente praesentium magnam. Tempore ea alias, inventore illo totam optio nemo in nesciunt cum debitis odit a, quae sit magni dolorum voluptate dicta sapiente molestias delectus accusamus, nam ex tempora ab. Sapiente, tenetur. Nemo eveniet incidunt animi veritatis, voluptates odio blanditiis omnis enim quam, excepturi distinctio. Itaque velit, cumque repudiandae alias obcaecati corporis nobis, voluptatum suscipit odio, id expedita. Beatae, quod voluptas nam culpa ab quas explicabo, atque minus qui, non sapiente. Iure autem, dicta, voluptates ad aspernatur molestias aut natus ipsam, tempora impedit adipisci eos debitis repudiandae? Quae suscipit placeat, ex iusto assumenda omnis nemo commodi distinctio velit, accusamus ducimus, ipsum similique. Tempora, inventore quasi minima tempore illo a vero. Ex rem fugit illo dicta magni expedita ducimus consequatur eaque ipsa adipisci, animi eius dolorem accusamus repellat repellendus ipsam quod praesentium perspiciatis dolor quam, sunt. Nobis voluptate quidem blanditiis culpa quam veniam fuga necessitatibus doloremque laborum, iusto magni! Et quidem suscipit, aut eos nobis, deleniti dolorem recusandae ad error deserunt libero sed placeat quis autem maiores optio fuga aliquid, eaque amet est animi! Et perferendis suscipit eos rem laboriosam aspernatur iste quod consequatur ipsum quidem. Possimus architecto in iste doloribus sit asperiores, nemo suscipit numquam quas repellat nam at earum voluptatum nobis, minus, quo? Culpa, fuga.</p>
+			<div class="row">
+			<? foreach ($discounts as $discount):?>
+			<div class="col-md-4">
+				<p><?=mb_substr($discount['product_desc'], 0, 500, 'UTF-8').'...' ?></p>
+			</div>
+			<? endforeach; ?>
+			</div>
  		</div>
  		<div class="mini-cart"></div>
  	</main>
-
 
 <?php
 require ("footer.php");

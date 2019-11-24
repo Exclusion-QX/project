@@ -9,6 +9,7 @@ if (!isset($_SESSION['name'])) { ?>
 	require ("header.php");
 	require ("connect.php");
 	require ("functions.php");
+	include ("addProduct.php");
 
    $name = $_SESSION['name'];
    $id = $_SESSION['id'];
@@ -59,6 +60,36 @@ if (!isset($_SESSION['name'])) { ?>
 		}
 }
 
+	if (isset($_POST['change-product'])) {
+		$productName = $_POST['productName'];
+
+		if (isset($_POST['check1'])) {
+			$check = 1;
+		} elseif (isset($_POST['check2'])) {
+			$check = 2;
+		} elseif (isset($_POST['check3'])) {
+			$check = 3;
+		} else {
+			$check = 0;
+		}
+
+		$newPrice = $_POST['new-price'];
+		$changeProduct = change_product_price($productName, $check, $newPrice);
+
+		if ($changeProduct) {
+			$smsg = "Товар изменён";
+		} else {
+			$fsmsg = "Ошибка";
+		}
+		
+
+	}
+
+//История покупок
+
+	$products = get_order_by_id($id);
+
+
 ?>
   <!-- 	echo "<br/><br/><br/>С возвращением. $login,<br/>
   Ваше имя $name,<br/>
@@ -73,17 +104,29 @@ if (!isset($_SESSION['name'])) { ?>
 				    <div class="list-group" id="list-tab" role="tablist">
 				      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Профиль</a>
 				      <a class="list-group-item list-group-item-action" id="list-change-profile-list" data-toggle="list" href="#list-change-profile" role="tab" aria-controls="change-profile">Изменить личный данные</a>
-				      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Рейтинг</a>
+				      <a class="list-group-item list-group-item-action" id="list-story-list" data-toggle="list" href="#list-story" role="tab" aria-controls="story">История покупок</a>
+				    
+				    	<?php if (($_SESSION['group'] === 'manager' || $_SESSION['group'] === 'admin')) {
+				    		echo '<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-add-product" role="tab" aria-controls="settings">Добавить товар</a>
+				    			<a class="list-group-item list-group-item-action" id="list-change-product-list" data-toggle="list" href="#list-change-product" role="tab" aria-controls="change-product">Изменить товар</a>';
+				    	} ?>
+				      
+				    	
+				      
+				      
+				     
 				   	</div>
 
   				</div>
 
   				<div class="col-md-8 offset-1">
-  				<?php if(isset($smsg)){ ?><div class="alert alert-success" role="alert"> <?php echo $smsg; ?> </div><?php }?>
-				<?php if(isset($fsmsg)){ ?><div class="alert alert-danger" role="alert"> <?php echo $fsmsg; ?> </div><?php }?>
 			    <div class="tab-content" id="nav-tabContent">
 			    	<div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 			    	<!-- <div class="col-md-8 offset-1"> -->
+				    <?php if(isset($smsg)){ ?><div class="alert alert-success" role="alert"> <?php echo $smsg; ?> </div><?php }?>
+					<?php if(isset($fsmsg)){ ?><div class="alert alert-danger" role="alert"> <?php echo $fsmsg; ?> </div><?php }?>
+					<?php if(isset($added)){ ?><div class="alert alert-success" role="alert"> <?php echo $added; ?> </div><?php }?>
+					<?php if(isset($fadded)){ ?><div class="alert alert-danger" role="alert"> <?php echo $fadded; ?> </div><?php }?>
 						<table class="table table-borderless">
 								 <tbody>
 								    <tr>
@@ -109,6 +152,7 @@ if (!isset($_SESSION['name'])) { ?>
 								  </tbody>
 						</table>
 					</div>
+
 				    <div class="tab-pane fade" id="list-change-profile" role="tabpanel" aria-labelledby="list-change-profile-list">
 				    	<div class="row">
 				    	<div class="col-md-8">
@@ -159,7 +203,168 @@ if (!isset($_SESSION['name'])) { ?>
 					    </div>
 					    </div>
 				    </div>
-			    <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+			    <div class="tab-pane fade" id="list-story" role="tabpanel" aria-labelledby="list-story-list">
+			    	
+					<? foreach ($products as $product): 
+						$sum_price_product = ($product['product_price'] * $product['product_amount']);
+						$desc = $product['product_image'];
+						$image = explode(", ", $desc);
+					?>
+
+						<div class="col-lg-12 col-md-3 mb-4" id="productBlock">
+ 						<div class="card">
+						<div class="row">
+ 							<div class="col-lg-2 col-md-4 view overlay">
+ 								<img class="card-img-top" src="<?=$image[0]?>">
+ 								<a href="shop-page.php?id_product=<?=$product['id_product']?>&product_category=<?=$product['product_category']?>">
+ 									<div class="mask rgba-white-slight"></div>
+ 								</a>
+ 							</div>
+
+							<div class="col-lg-8 card-body cart-desc cart-text">
+								<h5>
+									<strong>
+										<a href="shop-page.php?id_product=<?=$product['id_product']?>&product_category=<?=$product['product_category']?>" class="dark-grey-text"><?=$product['product_name'] ?></a>
+									</strong>
+								</h5>
+
+								<p>
+									<?=mb_substr($product['characteristics'], 0, 50, 'UTF-8').'...' ?>								
+								</p>
+								
+								<div class="number-panel">
+									<p>Количество: <?=$product['product_amount']?></p>
+								</div>
+								
+							</div>
+
+								<div class="col-lg-2 block-buy">
+									<div class="price" id="<?=$i?>">
+										<h4 class="font-weight-bold blue-text">
+											<strong><?=$sum_price_product.'₽' ?></strong>
+										</h4>
+									</div>
+									<?php $i = $i + 1 ?>
+								</div>
+							</div>
+ 						</div>
+ 					</div>
+
+					<? endforeach; ?>
+
+					<?php
+ 					if ($i == 0) {
+						echo "<div class='cart-empty col-lg-5 offset-4'><h1>История пуста</h1></div>";
+						
+					}
+ 				?>
+
+			    </div>
+			    <div class="tab-pane fade" id="list-add-product" role="tabpanel" aria-labelledby="list-add-product">	
+			    		<form method="POST">
+			    		<div class="row">
+			    			<div class="col-md-6">		    			
+					    		<div class="form-group">
+					    			<label>Наименование</label>
+					    			<input type="text" class="form-control" name="productName" required>
+					    		</div>
+					    	</div>
+					    	<div class="col-md-6">					
+					    		<div class="form-group">
+					    			<label>Категория</label>
+					    			<select class="form-control" id="FormControlSelect" name="category" required>
+								      <option>Процессор</option>
+								      <option>Видеокрта</option>
+								      <option>Материнская плата</option>
+								      <option>Оперативная память</option>
+								      <option>Блок питания</option>
+								      <option>Жёсткий диск</option>
+								      <option>Охлаждение</option>
+								      <option>Корпус</option>
+								      <option>SSD накопитель</option>								     
+								    </select>					    		
+					    	</div>
+					    	</div>
+					    </div>
+					    <div class="row">
+					    	<div class="col-md-6">
+					    		<div class="form-group">
+					    			<label>Производитель</label>
+					    			<input type="text" class="form-control" name="provider" required>
+					    		</div>
+					    	</div>
+
+					    </div>
+					    		<div class="form-group">
+					    			<label>Описание</label>
+					    			<textarea class="form-control" name="desc__area" cols="30" rows="5" required></textarea>
+					    		</div>
+					    		<div class="form-group">
+					    			<label>Характеристики</label>
+					    			<textarea class="form-control" placeholder="Напрмер: FM2+, 4 x 3100 МГц, L2 - 4 МБ..." name="charac__area" cols="30" rows="5" required></textarea>
+					    		</div>
+					    	<div class="row">
+					    		<div class="col-md-6">
+					    		<div class="form-group">
+					    			<label>Путь к изображению</label>
+					    			<input type="text" class="form-control" name="image" required>
+								</div>
+								</div>
+								<div class="col-md-6">
+								<div class="form-group">
+					    			<label>Цена за товар (в рублях)</label>
+					    			<input type="text" class="form-control" name="price" required>
+								</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2 offset-4">
+								<button type="submit" class="btn btn-success" name="add-product">Добавить</button>
+								</div>
+							</div>
+					    </form>
+					
+			    </div>
+			    <div class="tab-pane fade" id="list-change-product" role="tabpanel" aria-labelledby="list-change-product">
+			    	<form method="POST">
+			    		<div class="row">
+			    			<div class="col-md-6">		    			
+					    		<div class="form-group">
+					    			<label>Наименование</label>
+					    			<input type="text" class="form-control" name="productName" required>
+					    		</div>
+					    	</div>
+					    	<div class="col-md-6">
+					    	<p>Отображение на главной странице</p>					
+					    		<div class="form-check form-check-inline">
+								  <input class="form-check-input" name="check1" type="checkbox" id="inlineCheckbox1" value="1">
+								  <label class="form-check-label" for="inlineCheckbox1">Новый</label>
+								</div>
+								<div class="form-check form-check-inline">
+								  <input class="form-check-input" name="check2" type="checkbox" id="inlineCheckbox2" value="2">
+								  <label class="form-check-label" for="inlineCheckbox2">Скидка</label>
+								</div>
+								<div class="form-check form-check-inline">
+								  <input class="form-check-input" name="check3" type="checkbox" id="inlineCheckbox3" value="3">
+								  <label class="form-check-label" for="inlineCheckbox3">Лучший</label>
+								</div>
+					    	</div>
+					    </div>
+					    	<div class="row">
+								<div class="col-md-6">
+								<div class="form-group">
+					    			<label>Новая цена (в рублях)</label>
+					    			<input type="text" class="form-control" name="new-price" required>
+								</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2 offset-4">
+								<button type="submit" class="btn btn-success" name="change-product">Изменить</button>
+								</div>
+							</div>
+					    </form>
+			    </div>
 				</div>
 				</div>
 			</div>

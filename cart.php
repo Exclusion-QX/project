@@ -47,7 +47,10 @@
  				$i = 0;
  				$id_card = 0;
 
- 				 foreach ($products as $product): ?>
+ 				 foreach ($products as $product): 
+ 				 	$desc = $product['product_image'];
+					$image = explode(", ", $desc);
+ 				 	?>
 				
 				<?php 
 					$sum_price_product = ($product['product_price'] * $product['product_number']);
@@ -60,21 +63,21 @@
  						<div class="card" id="<?=$product['id_cart']?>">
 						<div class="row">
  							<div class="col-lg-2 col-md-4 view overlay">
- 								<img class="card-img-top" src="<?=$product['product_image']?>" alt="Core-i9">
- 								<a href="shop-page.php?id_product=<?=$product['id_product']?>">
+ 								<img class="card-img-top" src="<?=$image[0]?>" alt="Core-i9">
+ 								<a href="shop-page.php?id_product=<?=$product['id_product']?>&product_category=<?=$product['product_category']?>">
  									<div class="mask rgba-white-slight"></div>
  								</a>
  							</div>
 
 							<div class="col-lg-8 card-body cart-desc cart-text">
-								<a href="shop-page.php?id_product=<?=$product['id_product']?>" class="grey-text">
+								<a href="shop-page.php?id_product=<?=$product['id_product']?>&product_category=<?=$product['product_category']?>" class="grey-text">
 									<h5><?=$product['product_category'] ?></h5>
 								</a>
 								
 
 								<h5>
 									<strong>
-										<a href="shop-page.php?id_product=<?=$product['id_product']?>" class="dark-grey-text"><?=$product['product_name'] ?> <!-- <span class="badge-pill danger-color">NEW</span> --></a>
+										<a href="shop-page.php?id_product=<?=$product['id_product']?>&product_category=<?=$product['product_category']?>" class="dark-grey-text"><?=$product['product_name'] ?> <!-- <span class="badge-pill danger-color">NEW</span> --></a>
 									</strong>
 								</h5>
 

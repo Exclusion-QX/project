@@ -86,6 +86,7 @@ function test(id){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState === 4 && xhr.status === 200){
 			servResponse.textContent = xhr.responseText;
+			alert(id);
 		}
 	}
 

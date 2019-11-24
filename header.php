@@ -50,11 +50,13 @@ if(isset($_COOKIE['username']))
 							<a href="#" class="nav-link waves-effect">Товары</a>
 						</li>
 						<li class="nav-item">
-							<a href="#" class="nav-link waves-effect">Конструктор</a>
-						</li>
-						<li class="nav-item">
 							<a href="#" class="nav-link waves-effect">О нас</a>
 						</li>
+						<?php if (($_SESSION['group'] === 'admin')) {
+							echo '<li class="nav-item">
+							<a href="sale.php" class="nav-link waves-effect">Продажи</a>
+						</li>';
+						} ?>
 					</ul>
 					<!-- Количество продуктов в карзине -->
 					<ul class="navbar-nav nav-flex-icons">

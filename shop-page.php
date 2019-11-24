@@ -1,4 +1,5 @@
 <?php
+session_start();
 require("connect.php");
 require("functions.php");
 
@@ -7,12 +8,26 @@ if (!is_numeric($id_product)) exit();
 
 require("header.php");
 
+if (isset($_SESSION['id'])) {
+	$check = 1;
+} else {
+	$check = 0;
+}
+
+$product_category = $_GET['product_category'];
 
 //ПОЛУЧАЕМ МАССИВ ПРОДУКТА
 $product = get_product_by_id($id_product);
 
 $desc = $product['characteristics'];
 $characteristic = explode(", ", $desc);
+
+$imageDesc = $product['product_image'];
+$image = explode(", ", $imageDesc);
+
+$timeNow = date('Y-m-d H:i', time());
+
+$comments = get_comments($id_product);
 ?>
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/cart-function.js"></script>
@@ -24,7 +39,7 @@ $characteristic = explode(", ", $desc);
  		<div class="container dark-grey-text mt-5">
  			<div class="row wow fadeIn">
  				<div class="col-md-6 mb-4" style="max-width: 400px;">
- 					<img src="<?=$product['product_image']?>" alt="macbook" class="img-fluid">
+ 					<img src="<?=$image[0]?>" alt="macbook" class="img-fluid">
  				</div>
  				<div class="col-md-5 offset-1 mb-14">
  					<div class="p-4 mt-4" style="height: 300px;">
@@ -57,16 +72,17 @@ $characteristic = explode(", ", $desc);
 						</div>
 						<div class="col-md-12">
 							<p class="lead">
-	 							<span class="mr-1">
+	 							<!-- <span class="mr-1">
 	 								<del>200₽</del>
-	 							</span>
+	 							</span> -->
 	 							<span class="mr-1">
 	 								<?=$product['product_price'].'₽'?>
 	 							</span>
 	 						</p>
  						</div>
- 						
-						<div id="response"></div>
+ 						<div class="col-md-12">
+							<div id="response"></div>
+						</div>
 						<form name="inCartForm">
  							<div class="d-flex justify-content-left">
 								<div class="col-md-3">
@@ -82,15 +98,19 @@ $characteristic = explode(", ", $desc);
  						</form>
 						
 						
-						<form>
+						<form name="buyProductForm">
 							<div class="col-md-4">
 		 						<div class="button-buy-product">
-									<button type="submit" class="btn btn-lg btn-primary btn-md my-0 p" name="buy" id="buy">Купить</button>
+		 						
+		 							<input type="hidden" name="idpurchaser__inp" value="<?=$_SESSION['id']?>">							        
+							        <input type="hidden" name="timeNow__inp" value="<?=$timeNow?>">
+									<button type="submit" class="btn btn-lg btn-primary btn-md my-0 p" name="buy__btn" id="buy" value="<?=$product['id_product']?>">Купить</button>
+							
 								</div>
 							</div>
 						</form>
 						
-
+						<script src='js/buy.js'></script>
  						<script src='js/ajax.js'></script>
  						
  					</div>
@@ -102,35 +122,21 @@ $characteristic = explode(", ", $desc);
 				<div class="row wow fadeIn">
 					<div class="col-md-9">
 						<div class="col-md-12">
-							<hr id="list-item-1" style="margin-bottom: 60px;">
+							<hr style="margin-bottom: 60px;">
 						</div>
 						<div class="col-md-10 offset-1">
+							<hr  id="list-item-1" style="margin-bottom: 65px; visibility: hidden;">
 							<h4>Описание</h4>
 							<p><?=$product['product_desc']?></p>
 
+
 							<hr id="list-item-2" style="margin-bottom: 65px; visibility: hidden;">		
 							<h4>Характеристика</h4>
-							<table class="table">
-							  	<tbody>
-							  	<tr>
-							  		<th>Сокет</th>
-							  		<th><?=$characteristic[0]?></th>
-							  	</tr>
-							  	<tr>
-							  		<th>Количество ядер</th>
-							  		<th><?=$characteristic[1]?></th>
-							  	</tr>
-							  	<tr>
-							  		<th>Объём кэша L3</th>
-							  		<th><?=$characteristic[2]?></th>
-							  	</tr>
-							  	<tr>
-							  		<th>Базовая частота процессора (МГц)</th>
-							  		<th><?=$characteristic[3]?></th>
-							  	</tr>
-							  	
-							  	</tbody>
-							 </table>
+							<?php 
+								if($product_category === "Процессор"){
+									include("characteristics/processor-characteristics.php");
+								}
+							?>
 							<hr id="list-item-3" style="margin-bottom: 60px; visibility: hidden;">
 							<h4>Отзывы</h4>
 							<div class="row">
@@ -148,7 +154,7 @@ $characteristic = explode(", ", $desc);
 							</div>
 							</div>
 
-							<button type="button" class="btn btn-secondary" onclick="display(document.getElementById('form2'))" /> Оставить отзыв</button>
+							<button type="button" class="btn btn-secondary" onclick="display(document.getElementById('form2', <?=$_SESSION['id'];?>))" /> Оставить отзыв</button>
 
 							<form id="form2" style="display: none;">
 								<div class="rating-area">
@@ -170,17 +176,21 @@ $characteristic = explode(", ", $desc);
 							<h4>Комментарии</h4>
 
 							<script>
-						    function display(form) {
-						        if (form.style.display == "none") {
-						            form.style.display = "block";
-						        } else {
-						            form.style.display = "none";
-						        }
-						    }
+								function display(form, id){
+									if (id != '') {
+									if (form.style.display == "none") {
+								  		form.style.display = "block";
+									} else {
+								    	form.style.display = "none";
+									}
+								} else  {
+									window.location.replace("http://project.loc/login.php");
+								}
+								}
 						    </script>
 							
-							<button type="button" class="btn btn-secondary" onclick="display(document.getElementById('form1'))" /> Оставить комментарий</button>
-							<form id="form1" style="display: none;" class="comment-form">
+							<button type="button" class="btn btn-secondary" onclick="display(document.getElementById('form1'), '<?=$_SESSION['id']?>')" /> Оставить комментарий</button>
+							<form name="sendCommentForm" id="form1" style="display: none;" class="comment-form" method="POST">
 								<!-- <div class="row">
 									<div class="col comment-form">
 														        		<input type="text" class="form-control" placeholder="Введите имя"">
@@ -190,29 +200,41 @@ $characteristic = explode(", ", $desc);
 														        		<input type="text" class="form-control" placeholder="Введите email"">
 														        	</div>
 														        </div> -->
-						        <textarea class="form-control" placeholder="Введите комментарий" name="comment" cols="30" rows="5"></textarea>
+						        <textarea class="form-control" placeholder="Введите комментарий" name="comment__area" cols="30" rows="5"></textarea>
 						        <div class="row">
 							        <div class="md-1 offset-9">
-							        	<button type="button" class="btn btn-primary">Отправить</button>
+							        	<input type="hidden" name="comment__inp" value="<?=$_SESSION['login']?>">
+							        	<input type="hidden" name="idproduct__inp" value="<?=$product['id_product']?>">
+							        	<input type="hidden" name="timeNow__inp" value="<?=$timeNow?>">
+							        	<button type="submit" name="comment__btn" class="btn btn-primary" value="<?=$_SESSION['id']?>");>Отправить</button>
 							       	</div>
 						       	</div>
 						    </form>
 						</div>
 						    
 						<div class="col-md-12">
-							<hr id="list-item-1" style="margin-bottom: 10px;">
+							<hr style="margin-bottom: 10px;">
 						</div>
-							
-						<div class="col-md-10 offset-1 comments">
-							<span>Name</span>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam eaque earum repellendus quia similique fugit saepe quis eligendi pariatur, facilis recusandae libero optio nulla quaerat id minima in incidunt veniam vel consequatur, nihil omnis deleniti asperiores quo. Quidem voluptatem exercitationem modi, labore, dolorem, voluptatibus perferendis ratione atque facilis possimus veritatis.</p>
-							<div class="comment-date">
-								<p>17 марта 2019 г. 20:14</p>
+						<?php foreach ($comments as $comment): ?>
+
+							<div class="col-md-10 offset-1 comments">
+							<div id="responseComment"></div>
+								<span><?=$comment['purchaser_login']?></span>
+								<p>
+									<?=$comment['comment']?>
+	                            </p>
+								<div class="comment-date">
+									<p><?=$comment['comment_date']?></p>
+								</div>
 							</div>
-						</div>
-						<div class="col-md-12">
+							<div class="col-md-12">
+							<hr>
+							</div>
+						<?php endforeach; ?>	
+						<!-- <div class="col-md-12">
 							<hr id="list-item-1" style="margin-bottom: 60px;">
-						</div>
+						</div> -->
+						<div style></div>
 					</div>	
 					<div class="col-md-3">
 			 			<nav id="list-example" class="navbar-static-top" style="position: -webkit-sticky; position: sticky; top: 0; padding-top: 60px;">
@@ -226,7 +248,7 @@ $characteristic = explode(", ", $desc);
 			</div>
  	</div>
  		
- 		
+ 		<script src="js/comments.js"></script>
  	</main> 	
 
 <?php
