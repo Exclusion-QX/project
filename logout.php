@@ -10,6 +10,7 @@ setcookie('username', $username, time() - 2592000, '/');
 setcookie('id', $id, time() - 2592000, '/');
 setcookie('number', $number, time() - 2592000, '/');
 setcookie('login', $login, time() - 2592000, '/');
+setcookie('group', $group, time() - 2592000, '/');
 session_destroy();
 header('Location: index.php');
 exit;

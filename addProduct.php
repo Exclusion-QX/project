@@ -8,8 +8,20 @@ if (isset($_POST['add-product'])) {
 	$characteristics = $_POST['charac__area'];
 	$image = $_POST['image'];
 	$price = $_POST['price'];
+	$providerPrice = $_POST['provider_price'];
+	$amount = $_POST['amount'];
+	$provider = $_POST['provider'];
+	if ($provider == "Intel") {
+		$provider = 1;
+	} elseif ($provider == "AMD") {
+		$provider = 2;
+	} elseif ($provider == "GIGABYTE") {
+		$provider = 3;
+	} else {
+		$provider = 4;
+	}
 
-	$result = add_product($name, $category, $desc, $characteristics, $image, $price);
+	$result = add_product($name, $category, $desc, $characteristics, $image, $price, $providerPrice, $amount, $provider);
 
 	if ($result === true) {
 		$added = "Товар добавлен";

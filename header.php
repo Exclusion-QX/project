@@ -23,6 +23,7 @@ if(isset($_COOKIE['username']))
   <link href="/css/style.css" rel="stylesheet">
 
   <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 </head>
 
 <header>
@@ -52,9 +53,9 @@ if(isset($_COOKIE['username']))
 						<li class="nav-item">
 							<a href="#" class="nav-link waves-effect">О нас</a>
 						</li>
-						<?php if (($_SESSION['group'] === 'admin')) {
+						<?php if (($_COOKIE['group'] === 'admin')) {
 							echo '<li class="nav-item">
-							<a href="sale.php" class="nav-link waves-effect">Продажи</a>
+							<a href="/sale.php" class="nav-link waves-effect">Продажи</a>
 						</li>';
 						} ?>
 					</ul>

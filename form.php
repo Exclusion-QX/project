@@ -46,15 +46,54 @@ require("connect.php");
 	}
 
 
-// Покупка товара
+//Покупка из корзины
 
 	if(isset($_POST['idpurchaser__inp']) && isset($_POST['timeNow__inp']) && 
-		isset($_POST['buy__btn']) && isset($_POST['inCart__inp'])) {
+		isset($_POST['buy__btn']) && isset($_POST['idCartBuy']) && 
+		isset($_POST['inCart__inp'])) {
 
 		$id = $_POST['idpurchaser__inp']; 
     	$time = $_POST['timeNow__inp'];
     	$idProduct = $_POST['buy__btn']; 	
     	$number = $_POST['inCart__inp'];
-
-    	$result = buy_product($idProduct, $id, $number, $time);
+    	$idCart = $_POST['idCartBuy'];
+		delete_product($idCart);   	
+    	$result = buy_product_func($idProduct, $id, $number, $time);
+    	$decAmount = buy_product_dec($idProduct, $number);
 	}
+
+	//отправка рейтинга
+
+	if (isset($_POST['id_purchaser']) && isset($_POST['rating']) && 
+		isset($_POST['id_product'])) {
+   
+   		$id_purchaser = $_POST['id_purchaser']; 
+    	$rating = $_POST['rating'];
+    	$id_product = $_POST['id_product']; 	
+
+    	$result = send_rating($id_purchaser, $rating, $id_product);
+	}
+	
+	//Покупка со страницы товара
+
+	if (isset($_POST['idpurchaser_inp']) && isset($_POST['timeNow_inp']) &&
+	 isset($_POST['buy_btn']) && isset($_POST['inCart_inp'])) {
+
+		$id = $_POST['idpurchaser_inp']; 
+    	$time = $_POST['timeNow_inp'];
+    	$idProduct = $_POST['buy_btn']; 	
+    	$number = $_POST['inCart_inp'];
+    	$result = buy_product_func($idProduct, $id, $number, $time);
+    	$decAmount = buy_product_dec($idProduct, $number);
+	}
+
+	// if (isset($_POST['idpur']) && isset($_POST['timeN']) && 
+	// 	isset($_POST['buy']) && isset($_POST['num'])) {
+
+	// 	$id = $_POST['idpur']; 
+ //    	$time = $_POST['timeN'];
+ //    	$idProduct = $_POST['buy']; 	
+ //    	$number = $_POST['num'];   	
+ //    	$result = buy_product_func($idProduct, $id, $number, $time);
+ //    	$decAmount = buy_product_dec($idProduct, $number);
+	// }

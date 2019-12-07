@@ -70,7 +70,7 @@ document.forms.cartDelAllProdForm.onsubmit = function(e){
 	xhr.send('deleteAllProduct__btn=' + btn);
 };
 
-function test(id){
+function delete_product(id){
 	var element = document.getElementById(id);
 	element.parentNode.removeChild(element);
 
@@ -86,9 +86,13 @@ function test(id){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState === 4 && xhr.status === 200){
 			servResponse.textContent = xhr.responseText;
-			alert(id);
 		}
 	}
 
 	xhr.send('idCart__btn=' + idCart);
 }
+
+
+
+
+

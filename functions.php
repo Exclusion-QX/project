@@ -79,7 +79,7 @@
 	function get_product_from_cart ($id_purchaser) {
 
 		global $link;
-		$sql = "SELECT cart.product_number, cart.id_cart, product.product_name, product.product_desc, product.product_price, product.id_product, product.product_image, product.product_category FROM cart, product WHERE cart.id_purchaser = '$id_purchaser' AND product.id_product = cart.id_product";
+		$sql = "SELECT cart.product_number, cart.id_cart, product.product_name, product.product_desc, product.product_price, product.id_product, product.product_image, product.product_category, product.characteristics FROM cart, product WHERE cart.id_purchaser = '$id_purchaser' AND product.id_product = cart.id_product";
 		$result = mysqli_query($link, $sql);
 		$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		return $products;
@@ -149,14 +149,14 @@
 	function get_comments($idProduct) {
 
 		global $link;
-		$sql = "SELECT review.rating, review.comment, review.comment_date, purchaser.purchaser_login FROM review, purchaser WHERE review.id_product = '$idProduct' AND purchaser.id_purchaser = review.id_purchaser ORDER BY review.comment_date DESC";
+		$sql = "SELECT review.comment, review.comment_date, purchaser.purchaser_login FROM review, purchaser WHERE review.id_product = '$idProduct' AND purchaser.id_purchaser = review.id_purchaser ORDER BY review.comment_date DESC";
 		$result = mysqli_query($link, $sql);
 		$comments = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 		return $comments;
 	}
 
-	function buy_product($idProduct, $id, $number, $time) {
+	function buy_product_func($idProduct, $id, $number, $time) {
 		
 		global $link;
 		$sql = "INSERT INTO orders (id_product, id_purchaser, product_amount, order_date ) VALUES ('$idProduct', '$id', '$number', '$time') ";
@@ -164,10 +164,18 @@
 		
 	}
 
-	function add_product($name, $category, $desc, $characteristics, $image, $price) {
+	function buy_product_dec($idProduct, $number) {
+		
+		global $link;
+		$sql = "UPDATE product SET product_amount = product_amount - '$number' WHERE id_product = '$idProduct'";
+		$result = mysqli_query($link, $sql);
+		
+	}
+
+	function add_product($name, $category, $desc, $characteristics, $image, $price, $providerPrice, $amount, $provider) {
 
 		 global $link;
-		 $sql = "INSERT INTO product (product_name, product_category, product_desc, characteristics, product_image, product_price) VALUES ('$name', '$category', '$desc', '$characteristics', '$image', '$price') ";
+		 $sql = "INSERT INTO product (product_name, product_category, product_desc, characteristics, product_image, product_price, provider_price, product_amount, id_provider) VALUES ('$name', '$category', '$desc', '$characteristics', '$image', '$price', '$providerPrice', '$amount', $provider) ";
 		 $result = mysqli_query($link, $sql);
 		 return true;
 	}
@@ -189,7 +197,7 @@
 	function show_statistics_all($firstdate, $seconddate) {
 
 		global $link;
-		$sql = "SELECT product.product_name, SUM(orders.product_amount) AS amount, orders.order_date, SUM(product.product_price) AS price FROM orders, product WHERE product.id_product = orders.id_product AND orders.order_date BETWEEN '$firstdate' AND '$seconddate' GROUP BY orders.id_product ORDER BY product.product_price DESC";
+		$sql = "SELECT product.product_name, SUM(orders.product_amount) AS amount, orders.order_date, SUM(product.product_price * orders.product_amount) AS price, ((product.product_price - product.provider_price) * SUM(orders.product_amount)) AS whiteprice FROM orders, product WHERE product.id_product = orders.id_product AND orders.order_date BETWEEN '$firstdate' AND '$seconddate' GROUP BY orders.id_product ORDER BY product.product_price DESC";
 
 		$result = mysqli_query($link, $sql);
 		$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -201,7 +209,7 @@
 	function show_statistics_by_category($category, $firstdate, $seconddate) {
 
 		global $link;
-		$sql = "SELECT product.product_name, SUM(orders.product_amount) AS amount, orders.order_date, SUM(product.product_price) AS price FROM orders, product WHERE product.id_product = orders.id_product AND product.product_category = '$category' AND orders.order_date BETWEEN '$firstdate' AND '$seconddate' GROUP BY orders.id_product ORDER BY orders.order_date DESC";
+		$sql = "SELECT product.product_name, SUM(orders.product_amount) AS amount, orders.order_date, SUM(product.product_price) AS price, ((product.product_price - product.provider_price) * SUM(orders.product_amount)) AS whiteprice FROM orders, product WHERE product.id_product = orders.id_product AND product.product_category = '$category' AND orders.order_date BETWEEN '$firstdate' AND '$seconddate' GROUP BY orders.id_product ORDER BY orders.order_date DESC";
 
 		$result = mysqli_query($link, $sql);
 		$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -213,7 +221,7 @@
 		function show_statistics_one_product($name, $category, $firstdate, $seconddate) {
 
 		global $link;
-		$sql = "SELECT product.product_name, (orders.product_amount) AS amount, orders.order_date, (product.product_price * orders.product_amount) AS price FROM orders, product WHERE product.id_product = orders.id_product AND product.product_name = '$name' AND product.product_category = '$category' AND orders.order_date BETWEEN '$firstdate' AND '$seconddate' ORDER BY orders.order_date DESC";
+		$sql = "SELECT product.product_name, (orders.product_amount) AS amount, orders.order_date, (product.product_price * orders.product_amount) AS price, ((product.product_price - product.provider_price) * SUM(orders.product_amount)) AS whiteprice FROM orders, product WHERE product.id_product = orders.id_product AND product.product_name = '$name' AND product.product_category = '$category' AND orders.order_date BETWEEN '$firstdate' AND '$seconddate' ORDER BY orders.order_date DESC";
 
 		$result = mysqli_query($link, $sql);
 		$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -225,7 +233,7 @@
 	function get_all_price_and_amount($firstdate, $seconddate) {
 
 		global $link;
-		$sql = "SELECT SUM(orders.product_amount) AS amount_all, SUM(product.product_price) AS price_all FROM orders, product WHERE product.id_product = orders.id_product AND orders.order_date BETWEEN '$firstdate' AND '$seconddate'";
+		$sql = "SELECT SUM(orders.product_amount) AS amount_all, SUM(product.product_price * orders.product_amount) AS price_all, (SUM(product.product_price * orders.product_amount) - (SUM(product.provider_price * orders.product_amount))) AS whiteprice FROM orders, product WHERE product.id_product = orders.id_product AND orders.order_date BETWEEN '$firstdate' AND '$seconddate'";
 
 		$result = mysqli_query($link, $sql);
 		$info = mysqli_fetch_assoc($result);
@@ -236,7 +244,7 @@
 	function get_all_price_and_amount_by_category($firstdate, $seconddate, $category) {
 
 		global $link;
-		$sql = "SELECT SUM(orders.product_amount) AS amount_all, SUM(product.product_price) AS price_all FROM orders, product WHERE product.id_product = orders.id_product AND product.product_category = '$category' AND orders.order_date BETWEEN '$firstdate' AND '$seconddate'";
+		$sql = "SELECT SUM(orders.product_amount) AS amount_all, SUM(product.product_price) AS price_all, (SUM(product.product_price * orders.product_amount) - (SUM(product.provider_price * orders.product_amount))) AS whiteprice FROM orders, product WHERE product.id_product = orders.id_product AND product.product_category = '$category' AND orders.order_date BETWEEN '$firstdate' AND '$seconddate'";
 
 		$result = mysqli_query($link, $sql);
 		$info = mysqli_fetch_assoc($result);
@@ -247,7 +255,7 @@
 	function get_all_price_and_amount_by_name($name, $firstdate, $seconddate, $category) {
 
 		global $link;
-		$sql = "SELECT SUM(orders.product_amount) AS amount_all, SUM(product.product_price) AS price_all FROM orders, product WHERE product.id_product = orders.id_product AND product.product_name = '$name' AND product.product_category = '$category' AND orders.order_date BETWEEN '$firstdate' AND '$seconddate'";
+		$sql = "SELECT SUM(orders.product_amount) AS amount_all, SUM(product.product_price * orders.product_amount) AS price_all, ((product.product_price - product.provider_price) * SUM(orders.product_amount)) AS whiteprice FROM orders, product WHERE product.id_product = orders.id_product AND product.product_name = '$name' AND product.product_category = '$category' AND orders.order_date BETWEEN '$firstdate' AND '$seconddate'";
 
 		$result = mysqli_query($link, $sql);
 		$info = mysqli_fetch_assoc($result);
@@ -276,10 +284,18 @@
 	}
 
 
-	function change_product_price($productName, $check, $newPrice) {
+	function change_product_price($productName, $check, $newPrice, $addAmount) {
 
 		global $link;
-		$sql = "UPDATE product SET product_price = '$newPrice' , advertising = '$check' WHERE product_name = '$productName'";
+		$sql = "UPDATE product SET product_price = '$newPrice' , advertising = '$check', product_amount = product_amount + '$addAmount' WHERE product_name = '$productName'";
+		$result = mysqli_query($link, $sql);
+		return $result;
+	}
+
+	function change_product_amount($productName, $check, $addAmount) {
+
+		global $link;
+		$sql = "UPDATE product SET advertising = '$check', product_amount = product_amount + '$addAmount' WHERE product_name = '$productName'";
 		$result = mysqli_query($link, $sql);
 		return $result;
 	}
@@ -301,3 +317,69 @@
 		$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		return $products;
 	}
+
+
+	function send_rating($id_purchaser, $rating, $id_product) {
+
+		global $link;
+
+	    $query = "INSERT INTO rating (id_product, id_purchaser, rating) VALUES ('$id_product', '$id_purchaser', '$rating') ";
+	    $result = mysqli_query($link, $query);
+	    return $result;
+	}
+
+	function get_rating($id_product) {
+
+		global $link;
+		$sql = "SELECT ROUND(AVG(rating), 1) AS rating_product FROM rating WHERE id_product ='$id_product'";
+		$result = mysqli_query($link, $sql);
+		$product = mysqli_fetch_assoc($result);
+
+		return $product;
+	}
+
+	function get_top_sale($name, $category, $firstdate, $seconddate, $limit, $offset) {
+
+		global $link;
+		$sql = "SELECT product.product_name, (orders.product_amount) AS amount FROM product, orders WHERE product.id_product = orders.id_product AND product.product_name = '$name' AND product.product_category = '$category' AND orders.order_date BETWEEN '$firstdate' AND '$seconddate' ORDER BY orders.product_amount DESC LIMIT $limit OFFSET $offset";
+
+		$result = mysqli_query($link, $sql);
+		$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+		return $products;
+	}
+
+	function get_top_sale_all($category, $firstdate, $seconddate, $limit, $offset) {
+
+		global $link;
+		$sql = "SELECT product.product_name, SUM(orders.product_amount) AS amount FROM product, orders WHERE product.id_product = orders.id_product AND product.product_category = '$category' AND orders.order_date BETWEEN '$firstdate' AND '$seconddate' GROUP BY orders.id_product ORDER BY amount DESC LIMIT $limit OFFSET $offset";
+
+		$result = mysqli_query($link, $sql);
+		$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+		return $products;
+	}
+
+	function get_top_rating_all($category, $limit, $offset) {
+
+		global $link;
+		$sql = "SELECT product.product_name, AVG(rating.rating) AS rating FROM rating, product WHERE product.id_product = rating.id_product AND product.product_category = '$category' GROUP BY rating.id_product ORDER BY rating DESC LIMIT $limit OFFSET $offset";
+
+		$result = mysqli_query($link, $sql);
+		$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+		return $products;
+	}
+
+	function get_profit(){
+
+		global $link;
+		$sql = "SELECT ((product.product_price * orders.product_amount) - (product.provider_price * orders.product_amount)) AS profit, orders.order_date, product.product_category FROM orders, product WHERE orders.id_product = product.id_product ORDER BY orders.order_date DESC";
+		$result = mysqli_query($link, $sql);
+		$info = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+		return $info;
+	}
+
+
+	

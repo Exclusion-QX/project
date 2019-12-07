@@ -11,6 +11,7 @@ $id = $_SESSION['id'];
 $_SESSION['number'] = get_number_products($id);
 $number = $_SESSION['number'];
 $login = $_SESSION['login'];
+$group = $_SESSION['group'];
 /*$cook_val = array('cook_id' => $id, 'cook_name' => $username, 'cook_numbProducts' => $numbProducts);
 
 setcookie('purchaser', serialize($cook_val), time() + 60 * 60 * 24 * 7, '/');
@@ -20,6 +21,8 @@ setcookie('username', $username, time() + 60 * 60 * 24 * 7, '/');
 setcookie('id', $id, time() + 60 * 60 * 24 * 7, '/');
 setcookie('number', $number, time() + 60 * 60 * 24 * 7, '/');
 setcookie('login', $login, time() + 60 * 60 * 24 * 7, '/');
+setcookie('group', $group, time() + 60 * 60 * 24 * 7, '/');
+
 //setcookie('number', $numbProducts, time() + 60 * 60 * 24 * 7, '/');
 $newproducts = get_new_products();
 $discounts = get_discounts_products();

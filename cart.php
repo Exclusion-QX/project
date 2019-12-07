@@ -24,6 +24,8 @@
 
 			delete_all_products($id_purchaser);
 		}
+
+		$timeNow = date('Y-m-d H:i', time());
 	?>
 
 	<div class="container">
@@ -82,7 +84,7 @@
 								</h5>
 
 								<p>
-									<?=mb_substr($product['product_desc'], 0, 50, 'UTF-8').'...' ?>								
+									<?=mb_substr($product['characteristics'], 0, 50, 'UTF-8').'...' ?>								
 								</p>
 								
 								<div class="number-panel">
@@ -100,9 +102,10 @@
 										<h4 class="font-weight-bold blue-text">
 											<strong><?=$sum_price_product.'₽' ?></strong>
 										</h4>
+										
 										<form name="cartDelProdForm">
 											<input type="hidden" name="deleteProduct__inp" value="<?=$product['id_cart']?>">
-											<button type="submit" class="button-delete-product" value="remove" name="deleteProduct__btn" onclick="test(<?=$product['id_cart']?>);">Удалить товар</button>
+											<button type="submit" class="button-delete-product" value="remove" name="deleteProduct__btn" onclick="delete_product(<?=$product['id_cart']?>);">Удалить товар</button>
 										</form>
 
 										<!-- <script src="js/cart.js"></script> -->
@@ -110,7 +113,13 @@
 									</div>
 									<?php $i = $i + 1 ?>
 									<div class="button-buy">
-										<button type="submit" class="btn btn-lg btn-primary btn-md my-0 p" name="buy" id="buy">Купить</button>
+										<form name="buyProductForm">											
+						 					<div class="button-buy-product">					 						
+												<button type="submit" class="btn btn-lg btn-primary btn-md my-0 p" name="buy" value="remove" onclick="buy_product_from_cart(<?=$product['id_cart']?>, <?=$product['id_product']?>, <?=$id_purchaser?>, '<?=$timeNow?>', <?=$product['product_number']?> );">Купить</button>
+											</div>											
+										</form>
+									
+							
 									</div>
 								</div>
 							</div>
@@ -162,6 +171,7 @@
 
 	</div>	
 	<script src="js/cart.js"></script>
+	<script src="js/buy.js"></script>
 </main>
 
 

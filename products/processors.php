@@ -2,11 +2,13 @@
 require("../header.php");
 require("../connect.php");
 require("../functions.php");
+include("../rating-controller.php");
 
 $page = isset($_GET['page']) ? $_GET['page']: 1;
 $limit = 8;
 $offset = $limit * ($page - 1);
 $category = "Процессор";
+
 
 if (isset($_POST['showProducts__btn'])) {
 	$first_price = $_POST['first_price'];
@@ -257,6 +259,7 @@ if (!(isset($_POST['showProducts__btn']))) {
  				 foreach ($products as $product): 
  				 $desc = $product['product_image'];
 					$image = explode(", ", $desc);
+					$rating = get_rating($product['id_product']);
  				 	?>
 
  					<div class="col-lg-3 col-md-6 mb-4">
@@ -271,11 +274,7 @@ if (!(isset($_POST['showProducts__btn']))) {
 
 							<div class="card-body text-center card-desc">
 									<div class="rating-mini">
-										<span class="active"></span>	
-										<span class="active"></span>    
-										<span class="active"></span>  
-										<span class="active"></span>    
-										<span></span>
+										<? rating_show($rating['rating_product']); ?>
 									</div>
 								
 

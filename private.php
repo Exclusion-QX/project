@@ -74,7 +74,14 @@ if (!isset($_SESSION['name'])) { ?>
 		}
 
 		$newPrice = $_POST['new-price'];
-		$changeProduct = change_product_price($productName, $check, $newPrice);
+		$addAmount = $_POST['add_amount'];
+
+		if (!($newPrice == "")) {
+			$changeProduct = change_product_price($productName, $check, $newPrice, $addAmount);
+		} else {
+			$changeProduct = change_product_amount($productName, $check, $addAmount);
+		}
+		
 
 		if ($changeProduct) {
 			$smsg = "Товар изменён";
@@ -110,11 +117,7 @@ if (!isset($_SESSION['name'])) { ?>
 				    		echo '<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-add-product" role="tab" aria-controls="settings">Добавить товар</a>
 				    			<a class="list-group-item list-group-item-action" id="list-change-product-list" data-toggle="list" href="#list-change-product" role="tab" aria-controls="change-product">Изменить товар</a>';
 				    	} ?>
-				      
-				    	
-				      
-				      
-				     
+    
 				   	</div>
 
   				</div>
@@ -290,9 +293,24 @@ if (!isset($_SESSION['name'])) { ?>
 					    	<div class="col-md-6">
 					    		<div class="form-group">
 					    			<label>Производитель</label>
-					    			<input type="text" class="form-control" name="provider" required>
+					    			<select class="form-control" id="FormControlSelect" name="provider" required>
+								      <option>Intel</option>
+								      <option>AMD</option>
+								      <option>GIGABYTE</option>
+								      <option>ASUS</option>								     
+								    </select>
 					    		</div>
 					    	</div>
+	 						<div class="col-md-3">
+					    		<div class="form-group">
+					    			<label>Цена поставщика</label>
+					    			<input type="text" class="form-control" name="provider_price" required>
+					    		</div>
+					    	</div>
+					    	<div class="col-md-3">
+					    		<label>Количество</label>
+	 							<input type="number" value="1" aria-label="Search" id="number" name="amount" style="width: 100px;" class="form-control">
+	 						</div>
 
 					    </div>
 					    		<div class="form-group">
@@ -354,9 +372,13 @@ if (!isset($_SESSION['name'])) { ?>
 								<div class="col-md-6">
 								<div class="form-group">
 					    			<label>Новая цена (в рублях)</label>
-					    			<input type="text" class="form-control" name="new-price" required>
+					    			<input type="text" class="form-control" name="new-price">
 								</div>
 								</div>
+								<div class="col-md-6">
+					    		<label>Добавить кол-во товара</label>
+	 							<input type="number" value="0" aria-label="Search" id="number" name="add_amount" style="width: 100px;" class="form-control">
+	 						</div>
 							</div>
 							<div class="row">
 								<div class="col-md-2 offset-4">

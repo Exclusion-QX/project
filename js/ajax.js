@@ -18,7 +18,7 @@ document.forms.inCartForm.onsubmit = function(e){
 
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState === 4 && xhr.status === 200 && productInput > 0){
-			servResponse.textContent = xhr.responseText;
+			// servResponse.textContent = xhr.responseText;
 			$('#response').html("Добавлено");
 		}
 	}

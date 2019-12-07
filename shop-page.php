@@ -7,6 +7,7 @@ $id_product = $_GET['id_product'];
 if (!is_numeric($id_product)) exit();
 
 require("header.php");
+include("rating-controller.php"); 
 
 if (isset($_SESSION['id'])) {
 	$check = 1;
@@ -15,6 +16,7 @@ if (isset($_SESSION['id'])) {
 }
 
 $product_category = $_GET['product_category'];
+$id_purchaser = $_COOKIE['id'];
 
 //ПОЛУЧАЕМ МАССИВ ПРОДУКТА
 $product = get_product_by_id($id_product);
@@ -28,6 +30,8 @@ $image = explode(", ", $imageDesc);
 $timeNow = date('Y-m-d H:i', time());
 
 $comments = get_comments($id_product);
+
+$rating = get_rating($id_product);
 ?>
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/cart-function.js"></script>
@@ -61,13 +65,14 @@ $comments = get_comments($id_product);
  						<div class="col-md-12">
  							<p class="lead font-weight-bold"><?=$product['product_name']?></p>
  						</div>
+ 						<div class="col-md-12">
+ 							<?php if ($product['product_amount'] == 0) {
+ 								echo '<p>Нет в наличии </p>';
+ 							} ?>
+ 						</div>
  						<div class="col-md-4">
 	 						<div class="rating-mini">
-								<span class="active"></span>	
-								<span class="active"></span>    
-								<span class="active"></span>  
-								<span class="active"></span>    
-								<span></span>
+								<? rating_show($rating['rating_product']); ?>
 							</div>
 						</div>
 						<div class="col-md-12">
@@ -137,42 +142,54 @@ $comments = get_comments($id_product);
 									include("characteristics/processor-characteristics.php");
 								}
 							?>
-							<hr id="list-item-3" style="margin-bottom: 60px; visibility: hidden;">
+							<hr id="list-item-3" style="margin-bottom: 65px; visibility: hidden;">
 							<h4>Отзывы</h4>
 							<div class="row">
 							<div class="col-md-2 offset-1">
-								<h2 style="padding-top: 20px">4.0</h2>
+								<h2 style="padding-top: 20px"><?=$rating['rating_product'];
+								if (!(isset($rating['rating_product']))) {
+									echo "0.0";
+								}
+								?></h2>
 							</div>
 							<div class="col-md-3">
 								<div class="rating-result" style="padding-top: 20px;">
-									<span class="active"></span>	
-									<span class="active"></span>    
-									<span class="active"></span>  
-									<span class="active"></span>    
-									<span></span>
+									
+									<?php 
+										rating_show($rating['rating_product']);
+									?>
+									
 								</div>
 							</div>
 							</div>
 
 							<button type="button" class="btn btn-secondary" onclick="display(document.getElementById('form2', <?=$_SESSION['id'];?>))" /> Оставить отзыв</button>
 
-							<form id="form2" style="display: none;">
+							<form method="POST" name="sendRatingForm" id="form2" style="display: none; padding-top: 40px;">
+								<div class="row wow fadeIn">
+								<div class="md-col-6">
 								<div class="rating-area">
 
-									<input type="radio" id="star-5" name="rating" value="5">
-									<label for="star-5" title="Оценка «5»"></label>	
-									<input type="radio" id="star-4" name="rating" value="4">
-									<label for="star-4" title="Оценка «4»"></label>    
-									<input type="radio" id="star-3" name="rating" value="3">
-									<label for="star-3" title="Оценка «3»"></label>  
-									<input type="radio" id="star-2" name="rating" value="2">
-									<label for="star-2" title="Оценка «2»"></label>    
-									<input type="radio" id="star-1" name="rating" value="1">
-									<label for="star-1" title="Оценка «1»"></label>
+										<input type="hidden" name="idproduct__inp" value="<?=$product['id_product']?>">
+										<input type="radio" id="star-5" name="rating__inp" value="5">
+										<label for="star-5" title="Оценка «5»"></label>	
+										<input type="radio" id="star-4" name="rating__inp" value="4">
+										<label for="star-4" title="Оценка «4»"></label>    
+										<input type="radio" id="star-3" name="rating__inp" value="3">
+										<label for="star-3" title="Оценка «3»"></label>  
+										<input type="radio" id="star-2" name="rating__inp" value="2">
+										<label for="star-2" title="Оценка «2»"></label>    
+										<input type="radio" id="star-1" name="rating__inp" value="1">
+										<label for="star-1" title="Оценка «1»"></label>
 
 								</div>
+								</div>
+									<button type="submit" name="set_rating__btn" class="btn btn-primary" value="<?=$_SESSION['id']?>">Принять</button>
+
+								
+								</div>
 							</form>
-							<hr id="list-item-4" style="margin-bottom: 60px; visibility: hidden;">
+							<hr id="list-item-4" style="margin-bottom: 65px; visibility: hidden;">
 							<h4>Комментарии</h4>
 
 							<script>
@@ -206,7 +223,7 @@ $comments = get_comments($id_product);
 							        	<input type="hidden" name="comment__inp" value="<?=$_SESSION['login']?>">
 							        	<input type="hidden" name="idproduct__inp" value="<?=$product['id_product']?>">
 							        	<input type="hidden" name="timeNow__inp" value="<?=$timeNow?>">
-							        	<button type="submit" name="comment__btn" class="btn btn-primary" value="<?=$_SESSION['id']?>");>Отправить</button>
+							        	<button type="submit" name="comment__btn" class="btn btn-primary" value="<?=$_SESSION['id']?>">Отправить</button>
 							       	</div>
 						       	</div>
 						    </form>
@@ -247,8 +264,9 @@ $comments = get_comments($id_product);
 				</div>
 			</div>
  	</div>
- 		
+
  		<script src="js/comments.js"></script>
+ 		<script src="js/rating.js"></script>
  	</main> 	
 
 <?php
