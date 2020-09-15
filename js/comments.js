@@ -1,6 +1,5 @@
 var servResponse = document.querySelector('#responseComment');
 
-// Добавление товара в корзину
 
 document.forms.sendCommentForm.onsubmit = function(e){
 	e.preventDefault();

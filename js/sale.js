@@ -51,7 +51,7 @@
 				pointStrokeColor: "#fff",
 				pointHighlightFill: "#fff",
 				pointHighlightStroke: "yellow",
-				data: [1243,3078,3502,6600,5523,4044,5012,7490,6700,3900,5600,7200]
+				data: [243,307,502,600,523,1044,501,749,1700,1500,1000,1500]
 			},
 			]
 		}
